@@ -1,0 +1,44 @@
+# Configure main menu and social menu
+#[[main]]
+#identifier = "home"
+#name = "Home"
+#url = "/"
+#[main.params]
+#icon = "home"
+#newtab = true
+
+[[social]]
+    identifier = "gmail"
+    name = "Gmail"
+    url = "mailto:niemhoalongvu@gmail.com"
+    [social.params]
+        icon = "mail"
+
+[[social]]
+    identifier = "resume"
+    name = "Resume"
+    url = "https://niemhoalongvu.github.io/"
+    [social.params]
+        icon = "resume"
+
+[[social]]
+    identifier = "telephone"
+    name = "Phone"
+    url = "tel:+84362511450"
+    [social.params]
+        icon = "phone"
+
+[[social]]
+    identifier = "github"
+    name = "GitHub"
+    url = "https://github.com/vuniem131104"
+    [social.params]
+    icon = "brand-github"
+
+[[social]]
+    identifier = "linkedin"
+    name = "LinkedIn"
+    url = "https://www.linkedin.com/in/le-hoang-vu-3ba5622a7/"
+    [social.params]
+    icon = "linkedin"
+
