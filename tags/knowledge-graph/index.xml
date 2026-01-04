@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knowledge Graph on Le Hoang Vu</title><link>https://vuniem131104.github.io/my-portfolio/tags/knowledge-graph/</link><description>Recent content in Knowledge Graph on Le Hoang Vu</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://vuniem131104.github.io/my-portfolio/tags/knowledge-graph/index.xml" rel="self" type="application/rss+xml"/><item><title>Multiple Choice Question Generation using LLMs and Knowledge Graphs</title><link>https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/</link><pubDate>Mon, 15 Dec 2025 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/cover.jpg" alt="Featured image of post Multiple Choice Question Generation using LLMs and Knowledge Graphs" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; &lt;a class="link" href="https://github.com/vuniem131104/Multiple-Choice-Question-Generation-With-LLMs-and-KG" target="_blank" rel="noopener"
+&gt;Multiple-Choice-Question-Generation&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="ai-powered-multiple-choice-question-mcq-generation-platform"&gt;AI-Powered Multiple Choice Question (MCQ) Generation Platform
+&lt;/h1&gt;&lt;p&gt;An intelligent educational platform for automated Multiple Choice Question (MCQ) generation using Retrieval-Augmented Generation (RAG) and Knowledge Graph technologies. The system leverages course materials to generate contextually relevant, high-quality MCQs for assessment and practice. Built with support for multiple AI models through LiteLLM and Neo4j knowledge graph for enhanced question generation.&lt;/p&gt;
+&lt;h2 id="architecture"&gt;Architecture
+&lt;/h2&gt;&lt;p&gt;This is a microservices-based application with the following components:&lt;/p&gt;
+&lt;h3 id="services"&gt;Services
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Auth Service&lt;/strong&gt; (&lt;code&gt;port 3001&lt;/code&gt;): User authentication and authorization&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Generation Service&lt;/strong&gt; (&lt;code&gt;port 3005&lt;/code&gt;): MCQ generation using LLM models with RAG&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RAG Service&lt;/strong&gt; (&lt;code&gt;port 3011&lt;/code&gt;): Retrieval-Augmented Generation for context extraction&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Indexing Service&lt;/strong&gt; (&lt;code&gt;port 3006&lt;/code&gt;): Document processing and knowledge graph indexing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Frontend&lt;/strong&gt; (&lt;code&gt;port 3000&lt;/code&gt;): React-based web interface for MCQ management&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="infrastructure"&gt;Infrastructure
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;LiteLLM&lt;/strong&gt; (&lt;code&gt;port 9510&lt;/code&gt;): Unified interface for multiple LLM providers (Gemini, Azure OpenAI, AWS Claude)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Neo4j&lt;/strong&gt; (&lt;code&gt;port 17474/17687&lt;/code&gt;): Graph database for knowledge representation&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PostgreSQL&lt;/strong&gt; (&lt;code&gt;port 15432&lt;/code&gt;): Relational database for user and course data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MinIO&lt;/strong&gt; (&lt;code&gt;port 9000/9001&lt;/code&gt;): Object storage for documents and media&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ollama&lt;/strong&gt; (&lt;code&gt;port 11434&lt;/code&gt;): Local LLM hosting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="multiple-choice-question-generation-pipeline"&gt;Multiple-Choice Question Generation Pipeline
+&lt;/h3&gt;&lt;p&gt;This pipeline involves several steps to generate high-quality MCQs as shown below:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/mcq.png"
+width="1149"
+height="733"
+srcset="https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/mcq_hu_e9b7c7f2b5951242.png 480w, https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/mcq_hu_d313a3824077dcbf.png 1024w"
+loading="lazy"
+alt="alt text"
+class="gallery-image"
+data-flex-grow="156"
+data-flex-basis="376px"
+&gt;&lt;/p&gt;
+&lt;h2 id="project-structure"&gt;Project Structure
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;KLTN/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── services/ # Microservices
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── auth/ # Authentication service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── generation/ # MCQ generation service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── indexing/ # Document indexing service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── rag/ # RAG context retrieval service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── frontend/ # React frontend application
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── libs/ # Shared libraries
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── base/ # Base utilities
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── graph_db/ # Neo4j integration
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── lite_llm/ # LiteLLM wrapper
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── logger/ # Logging utilities
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── postgres_db/ # PostgreSQL integration
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── storage/ # MinIO storage utilities
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── docker/ # Dockerfiles for services
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── database/ # Database initialization scripts
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── outputs/ # Analysis outputs and results
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── archive/ # Research and evaluation scripts
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── config.yaml # LiteLLM configuration
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── docker-compose.yml # Docker orchestration
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="constructed-knowledge-graph"&gt;Constructed Knowledge Graph
+&lt;/h2&gt;&lt;p&gt;The knowledge graph is built from course materials, capturing concepts, relationships, and entities. It enables context-aware MCQ generation by providing structured information for question formulation.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/kg.png"
+width="1030"
+height="411"
+srcset="https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/kg_hu_9b082d936cda946f.png 480w, https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/kg_hu_1db6d89eedb49e94.png 1024w"
+loading="lazy"
+alt="alt text"
+class="gallery-image"
+data-flex-grow="250"
+data-flex-basis="601px"
+&gt;&lt;/p&gt;
+&lt;h2 id="getting-started"&gt;Getting Started
+&lt;/h2&gt;&lt;h3 id="prerequisites"&gt;Prerequisites
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Docker &amp;amp; Docker Compose&lt;/li&gt;
+&lt;li&gt;Python 3.13+&lt;/li&gt;
+&lt;li&gt;Node.js 18+ (for frontend development)&lt;/li&gt;
+&lt;li&gt;UV package manager (for Python dependencies)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="installation--running"&gt;Installation &amp;amp; Running
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Clone the repository&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone &amp;lt;repository-url&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; KLTN
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Start all services with Docker Compose&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Access the application&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Frontend: http://localhost:3000&lt;/li&gt;
+&lt;li&gt;Neo4j Browser: http://localhost:17474&lt;/li&gt;
+&lt;li&gt;MinIO Console: http://localhost:9001&lt;/li&gt;
+&lt;li&gt;LiteLLM API: http://localhost:9510&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="development-setup"&gt;Development Setup
+&lt;/h3&gt;&lt;h4 id="backend-services"&gt;Backend Services
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;span class="lnt"&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Install UV package manager&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install uv
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Install dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv sync
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Run a specific service (example: RAG service)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; services/rag
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run python -m src.main
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="frontend"&gt;Frontend
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; frontend
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm install
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm run dev
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="supported-courses"&gt;Supported Courses
+&lt;/h2&gt;&lt;p&gt;The platform currently supports the following courses:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;int3405&lt;/strong&gt;: Introduction to Artificial Intelligence&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dsa2025&lt;/strong&gt;: Data Structures and Algorithms 2025&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;rl2025&lt;/strong&gt;: Reinforcement Learning 2025&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="features"&gt;Features
+&lt;/h2&gt;&lt;h3 id="mcq-generation"&gt;MCQ Generation
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Automated MCQ Creation&lt;/strong&gt;: Generate multiple choice questions from course materials&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Context-Aware Questions&lt;/strong&gt;: Leverage RAG to create questions based on specific topics and difficulty levels&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Knowledge Graph Enhanced&lt;/strong&gt;: Use graph relationships to generate questions testing concept connections&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Quality Control&lt;/strong&gt;: Validate questions for clarity, difficulty, and educational value&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customizable&lt;/strong&gt;: Control question difficulty, topic focus, and distractor quality&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="knowledge-graph-integration"&gt;Knowledge Graph Integration
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Automated extraction of concepts, relationships, and entities from course materials&lt;/li&gt;
+&lt;li&gt;Graph-based retrieval for contextually relevant question generation&lt;/li&gt;
+&lt;li&gt;Entity similarity analysis for creating meaningful distractors&lt;/li&gt;
+&lt;li&gt;Knowledge graph effectiveness evaluation for question quality&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="multi-model-support"&gt;Multi-Model Support
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Gemini 2.5 Flash&lt;/li&gt;
+&lt;li&gt;Azure OpenAI (GPT-4, GPT-4o-mini)&lt;/li&gt;
+&lt;li&gt;AWS Claude&lt;/li&gt;
+&lt;li&gt;Local models via Ollama&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="rag-pipeline-for-mcq-context"&gt;RAG Pipeline for MCQ Context
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Document chunking and embedding for course materials&lt;/li&gt;
+&lt;li&gt;Semantic search to identify relevant content for questions&lt;/li&gt;
+&lt;li&gt;Context extraction for question and answer generation&lt;/li&gt;
+&lt;li&gt;Knowledge graph enhanced retrieval for topic selection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="user-management"&gt;User Management
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Role-based access control (Teachers/Students)&lt;/li&gt;
+&lt;li&gt;Course enrollment and management&lt;/li&gt;
+&lt;li&gt;Authentication with JWT tokens&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="technologies"&gt;Technologies
+&lt;/h2&gt;&lt;h3 id="backend"&gt;Backend
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Python 3.13&lt;/strong&gt; with UV package manager&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FastAPI&lt;/strong&gt; for REST APIs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Neo4j&lt;/strong&gt; for knowledge graph storage&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PostgreSQL&lt;/strong&gt; for relational data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LiteLLM&lt;/strong&gt; for unified LLM interface&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="frontend-1"&gt;Frontend
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;React 18&lt;/strong&gt; with TypeScript&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vite&lt;/strong&gt; for build tooling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TailwindCSS&lt;/strong&gt; for styling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;React Query&lt;/strong&gt; for data fetching&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Zustand&lt;/strong&gt; for state management&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="infrastructure-1"&gt;Infrastructure
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Docker &amp;amp; Docker Compose&lt;/strong&gt; for containerization&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MinIO&lt;/strong&gt; for object storage&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Nginx&lt;/strong&gt; for serving frontend&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="evaluation--analysis"&gt;Evaluation &amp;amp; Analysis
+&lt;/h2&gt;&lt;p&gt;The &lt;code&gt;archive/&lt;/code&gt; directory contains research and evaluation scripts for MCQ quality assessment:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;analyze_kg_effectiveness.py&lt;/code&gt;: Knowledge graph impact on question quality&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;kg_evaluation.py&lt;/code&gt;: Quantitative KG metrics for MCQ generation&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;entities_similarity.ipynb&lt;/code&gt;: Entity similarity computation for distractor creation&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;qa_topic_comparison.py&lt;/code&gt;: MCQ topic coverage analysis&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;baseline.ipynb&lt;/code&gt;: Comparison with baseline MCQ generation methods&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;MCQ generation results are stored in &lt;code&gt;outputs/&lt;/code&gt; organized by model and course.&lt;/p&gt;
+&lt;h2 id="api-documentation"&gt;API Documentation
+&lt;/h2&gt;&lt;p&gt;Once services are running, API documentation is available at:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Auth Service: http://localhost:3001/docs&lt;/li&gt;
+&lt;li&gt;Generation Service: http://localhost:3005/docs&lt;/li&gt;
+&lt;li&gt;RAG Service: http://localhost:3011/docs&lt;/li&gt;
+&lt;li&gt;Indexing Service: http://localhost:3006/docs&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

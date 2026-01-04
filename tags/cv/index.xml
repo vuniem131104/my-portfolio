@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CV on Le Hoang Vu</title><link>https://vuniem131104.github.io/my-portfolio/tags/cv/</link><description>Recent content in CV on Le Hoang Vu</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 29 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://vuniem131104.github.io/my-portfolio/tags/cv/index.xml" rel="self" type="application/rss+xml"/><item><title>Flowers Colorization using Denoising Diffusion Probabilistic Models</title><link>https://vuniem131104.github.io/my-portfolio/p/flowers-colorization/</link><pubDate>Tue, 29 Apr 2025 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/flowers-colorization/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/flowers-colorization/cover.jpg" alt="Featured image of post Flowers Colorization using Denoising Diffusion Probabilistic Models" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; &lt;a class="link" href="https://github.com/vuniem131104/Flowers-Colorization-Using-DDPM" target="_blank" rel="noopener"
+&gt;Flowers-Colorization&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="flowers-colorization-using-ddpm"&gt;Flowers-Colorization using DDPM
+&lt;/h1&gt;&lt;p&gt;This project applies &lt;strong&gt;Denoising Diffusion Probabilistic Models (DDPM)&lt;/strong&gt; to the task of &lt;strong&gt;automatic colorization&lt;/strong&gt; of flower images with MLOps Pipeline.&lt;br&gt;
+By learning a diffusion-based generative process, the model can transform grayscale (black-and-white) flower images into realistic and vivid colorized versions.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="project-overview"&gt;Project Overview
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Goal&lt;/strong&gt;:&lt;br&gt;
+To develop a model that takes a grayscale image of a flower and generates a realistic colorized image.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Approach&lt;/strong&gt;:&lt;br&gt;
+We employ a &lt;strong&gt;DDPM&lt;/strong&gt; architecture that learns to reverse a gradual noising process, starting from a noise distribution to generate a colorful, detailed image conditioned on the input grayscale image.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Dataset&lt;/strong&gt;:&lt;br&gt;
+We use a dataset of flower images on kaggle (&lt;a class="link" href="https://www.kaggle.com/datasets/imsparsh/flowers-dataset%29" target="_blank" rel="noopener"
+&gt;https://www.kaggle.com/datasets/imsparsh/flowers-dataset)&lt;/a&gt;, preprocessing it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="project-structure"&gt;Project Structure
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Flowers-Colorization/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── .github/ &lt;span class="c1"&gt;# Github action&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── config/ &lt;span class="c1"&gt;# Config for MLOps pipeline&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── src/ &lt;span class="c1"&gt;# All the souce code&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── requirements.txt &lt;span class="c1"&gt;# Python dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── README.md &lt;span class="c1"&gt;# Project description (you are here!)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="model-details"&gt;Model Details
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Backbone&lt;/strong&gt;:&lt;br&gt;
+A &lt;strong&gt;U-Net&lt;/strong&gt; model is used for the noise prediction network within the DDPM framework.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Conditioning&lt;/strong&gt;:&lt;br&gt;
+The model conditions on grayscale images during both training and sampling.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Training Objective&lt;/strong&gt;:&lt;br&gt;
+Minimize the mean squared error (MSE) between the predicted noise and the true noise at different timesteps.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="quick-start"&gt;Quick Start
+&lt;/h2&gt;&lt;h3 id="1-install-dependencies"&gt;1. Install Dependencies
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install -r requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;You can modify the data path in &lt;code&gt;config.py&lt;/code&gt; accordingly.&lt;/p&gt;
+&lt;h3 id="2-run-full-pipeline"&gt;2. Run Full Pipeline
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python main.py
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Training progress (losses, sample generations) will be logged for monitoring.&lt;/p&gt;
+&lt;h3 id="3-generate-colorized-flowers"&gt;3. Generate Colorized Flowers
+&lt;/h3&gt;&lt;p&gt;After training:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python -m src.utils.inference
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;This will produce colorized versions of the grayscale flower images.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="main-features"&gt;Main Features
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Flexible&lt;/strong&gt;: Easily adapt to different flower datasets or resolution sizes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configurable&lt;/strong&gt;: Hyperparameters like noise schedule, number of diffusion steps, learning rate, batch size are adjustable via &lt;code&gt;config.py&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Visualization&lt;/strong&gt;: Intermediate colorizations during sampling are saved for analysis.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="results"&gt;Results
+&lt;/h2&gt;&lt;p&gt;Sample colorized outputs:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: center"&gt;Grayscale Input&lt;/th&gt;
+&lt;th style="text-align: center"&gt;Colorized Output&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center"&gt;&lt;img src="https://github.com/user-attachments/assets/84f596f2-2973-44a6-a8b8-be21fab2b8e2"
+loading="lazy"
+alt="0_gray"
+&gt;&lt;/td&gt;
+&lt;td style="text-align: center"&gt;&lt;img src="https://github.com/user-attachments/assets/df1bf19a-446f-4be1-a80f-0b040e1f7f71"
+loading="lazy"
+alt="2488902131_3417698611_n"
+&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center"&gt;&lt;img src="https://github.com/user-attachments/assets/0a6241c4-afed-41cc-ab61-409f637cc0c8"
+loading="lazy"
+alt="1_gray"
+&gt;&lt;/td&gt;
+&lt;td style="text-align: center"&gt;&lt;img src="https://github.com/user-attachments/assets/25edbf1c-b19e-4fa2-bb26-bdf5b1517910"
+loading="lazy"
+alt="2498632196_e47a472d5a"
+&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="requirements"&gt;Requirements
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Python &amp;gt;= 3.8&lt;/li&gt;
+&lt;li&gt;PyTorch &amp;gt;= 1.10&lt;/li&gt;
+&lt;li&gt;torchvision&lt;/li&gt;
+&lt;li&gt;numpy&lt;/li&gt;
+&lt;li&gt;tqdm&lt;/li&gt;
+&lt;li&gt;matplotlib&lt;/li&gt;
+&lt;li&gt;(optional) wandb or tensorboard for experiment tracking&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See &lt;code&gt;requirements.txt&lt;/code&gt; for full details.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="references"&gt;References
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;DDPM Paper&lt;/strong&gt;: &lt;a class="link" href="https://arxiv.org/abs/2006.11239" target="_blank" rel="noopener"
+&gt;Denoising Diffusion Probabilistic Models (Ho et al., 2020)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;U-Net Paper&lt;/strong&gt;: &lt;a class="link" href="https://arxiv.org/abs/1505.04597" target="_blank" rel="noopener"
+&gt;U-Net: Convolutional Networks for Biomedical Image Segmentation (Ronneberger et al., 2015)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;</description></item><item><title>Image Super-Resolution</title><link>https://vuniem131104.github.io/my-portfolio/p/image-super-resolution/</link><pubDate>Sat, 01 Feb 2025 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/image-super-resolution/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/image-super-resolution/cover.jpg" alt="Featured image of post Image Super-Resolution" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; &lt;a class="link" href="https://github.com/vuniem131104/Super-Resolution-With-Pytorch" target="_blank" rel="noopener"
+&gt;Super-Resolution-With-Pytorch&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="overview"&gt;Overview
+&lt;/h1&gt;&lt;p&gt;This repo is the implementation of SRRESNET and SRGAN in super resolution task for blurry images&lt;/p&gt;
+&lt;h2 id="srresnet-architecture"&gt;SRRESNET ARCHITECTURE
+&lt;/h2&gt;&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/fead4ca9-4071-4ef5-a95b-da99f52366f2"
+loading="lazy"
+alt="image"
+&gt;
+The SRResNet is composed of the following operations –&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First, the low resolution image is convolved with a large kernel size 9x9 and a stride of 1, producing a feature map at the same resolution but with
+64 channels. A parametric ReLU (PReLU) activation is applied.&lt;/li&gt;
+&lt;li&gt;This feature map is passed through 16 residual blocks, each consisting of a convolution with a 3x3 kernel and a stride of 1, batch normalization and PReLU activation, another but similar convolution, and a second batch normalization. The resolution and number of channels are maintained in each convolutional layer.&lt;/li&gt;
+&lt;li&gt;The result from the series of residual blocks is passed through a convolutional layer with a 3x3 kernel and a stride of 1, and batch normalized. The resolution and number of channels are maintained. In addition to the skip connections in each residual block (by definition), there is a larger skip connection arching across all residual blocks and this convolutional layer.&lt;/li&gt;
+&lt;li&gt;2 subpixel convolution blocks, each upscaling dimensions by a factor of 2 (followed by PReLU activation), produce a net 4x upscaling. The number of channels is maintained.&lt;/li&gt;
+&lt;li&gt;Finally, a convolution with a large kernel size 9x9 and a stride of 1 is applied at this higher resolution, and the result is Tanh-activated to produce the super-resolved image with RGB channels in the range [-1, 1].&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="the-srresnet-update"&gt;The SRResNet Update
+&lt;/h3&gt;&lt;p&gt;Training the SRResNet, like any network, is composed of a series of updates to its parameters. What might constitute such an update?&lt;/p&gt;
+&lt;p&gt;Our training data will consist of high-resolution (gold) images, and their low-resolution counterparts which we create by 4x-downsampling them using bicubic interpolation.&lt;/p&gt;
+&lt;p&gt;In the forward pass, the SRResNet produces a &lt;strong&gt;super-resolved image at 4x the dimensions of the low-resolution image&lt;/strong&gt; that was provided to it.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/20a2baa9-1532-4a23-9522-ea36ee35f685"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;p&gt;We use the &lt;strong&gt;Mean-Squared Error (MSE) as the loss function&lt;/strong&gt; to compare the super-resolved image with this original, gold high-resolution image that was used to create the low-resolution image.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/5ac9201c-b9bb-4621-ac4c-75183bc41ebb"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;p&gt;Choosing to minimize the MSE between the super-resolved and gold images means we will change the parameters of the SRResNet in a way that, if given the low-resolution image again, it will &lt;strong&gt;create a super-resolved image that is closer in appearance to the original high-resolution version&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The MSE loss is a type of &lt;strong&gt;&lt;em&gt;content&lt;/em&gt; loss&lt;/strong&gt;, because it is based purely on the contents of the predicted and target images.&lt;/p&gt;
+&lt;p&gt;In this specific case, we are considering their contents in the &lt;em&gt;&lt;strong&gt;RGB space&lt;/strong&gt;&lt;/em&gt; – we will discuss the significance of this soon.&lt;/p&gt;
+&lt;h2 id="srgan-architecture"&gt;SRGAN ARCHITECTURE
+&lt;/h2&gt;&lt;p&gt;It consists of a &lt;em&gt;Generator&lt;/em&gt; and a &lt;strong&gt;Discriminator&lt;/strong&gt; as other conventional GANS&lt;/p&gt;
+&lt;h3 id="generator"&gt;GENERATOR
+&lt;/h3&gt;&lt;p&gt;It will be the same as the &lt;strong&gt;SRRESNET&lt;/strong&gt;, and we will take the pretrained &lt;strong&gt;SRRESNET&lt;/strong&gt; to initialize for the &lt;strong&gt;GENERATOR&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id="discriminator"&gt;DISCRIMINATOR
+&lt;/h3&gt;&lt;p&gt;As you might expect, the Discriminator is a convolutional network that functions as a &lt;strong&gt;binary image classifier&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/3ca77488-9508-40a8-a10d-a8a7d3d8769e"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;p&gt;It is composed of the following operations –&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The high-resolution image (of natural or artificial origin) is convolved with a large kernel size $9\times9$ and a stride of $1$, producing a feature map at the same resolution but with $64$ channels. A leaky &lt;em&gt;ReLU&lt;/em&gt; activation is applied.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This feature map is passed through $7$ &lt;strong&gt;convolutional blocks&lt;/strong&gt;, each consisting of a convolution with a $3\times3$ kernel, batch normalization, and leaky &lt;em&gt;ReLU&lt;/em&gt; activation. The number of channels is doubled in even-indexed blocks. Feature map dimensions are halved in odd-indexed blocks using a stride of $2$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The result from this series of convolutional blocks is flattened and linearly transformed into a vector of size $1024$, followed by leaky &lt;em&gt;ReLU&lt;/em&gt; activation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A final linear transformation yields a single logit, which can be converted into a probability score using the &lt;em&gt;Sigmoid&lt;/em&gt; activation function. This indicates the &lt;strong&gt;probability of the original input being a natural (gold) image&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="generator-update"&gt;GENERATOR UPDATE
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;We will update the generator by using pretrained VGG19 model from torchvision. We no longer compare the orginial high resolution images with super resolution images but we compare their outputs after forward them through &lt;strong&gt;the truncated VGGV19&lt;/strong&gt;. \&lt;/li&gt;
+&lt;li&gt;Moreover, we utilize the advantage of an adversirial loss by using BCEWithLogitsLoss in pytorch to compare super resolution images passing through the discriminator and it &lt;strong&gt;untrue label (1)&lt;/strong&gt;.
+&lt;img src="https://github.com/user-attachments/assets/42df0edf-6c99-4439-b211-8d6f5aa74f52"
+loading="lazy"
+alt="image"
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="discriminator-update"&gt;DISCRIMINATOR UPDATE
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;It is very straightforward because it just distinguish between high resolution images with real labels (1) and super resolution images with it real labels (0).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="training-models"&gt;TRAINING MODELS
+&lt;/h2&gt;&lt;p&gt;Our models are trained on COCO2024 dataset. If you want to train on your dataset, please do the following steps:&lt;/p&gt;
+&lt;h3 id="train-srresnet"&gt;Train SRRESNET
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 train_srresnet.py --data_folder &amp;lt;your data directory&amp;gt; --batch_size &amp;lt;your batch size&amp;gt; --epochs &amp;lt;epochs to train models&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="train-srgan"&gt;Train SRGAN
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 train_srgan.py --data_folder &amp;lt;your data directory&amp;gt; --batch_size &amp;lt;your batch size&amp;gt; --epochs &amp;lt;epochs to train models&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="testing-models"&gt;TESTING MODELS
+&lt;/h2&gt;&lt;h3 id="test-srresnet-with-images"&gt;Test SRRESNET with images
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 test_srresnet.py --image_path &amp;lt;path to your image&amp;gt; --srresnet_ckpt &amp;lt;your srresnet checkpoint&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="test-srgan-with-images"&gt;Test SRGAN with images
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 test_srgan.py --image_path &amp;lt;path to your image&amp;gt; --srgan_ckpt &amp;lt;your srgan checkpoint&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="result"&gt;RESULT
+&lt;/h2&gt;&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/bf2d44de-d458-4281-81cc-1654c4c559db"
+loading="lazy"
+alt="flowers"
+&gt;
+&lt;img src="https://github.com/user-attachments/assets/b17e1c5e-4e8c-44cc-9f6a-9963e72cfb1c"
+loading="lazy"
+alt="man"
+&gt;&lt;/p&gt;</description></item><item><title>License Plate Recognition</title><link>https://vuniem131104.github.io/my-portfolio/p/license-plate-recognition/</link><pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/license-plate-recognition/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/license-plate-recognition/cover.jpg" alt="Featured image of post License Plate Recognition" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; &lt;a class="link" href="https://github.com/vuniem131104/License-Plate-Recognition" target="_blank" rel="noopener"
+&gt;License-Plate-Recognition&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="summary"&gt;Summary
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Use openCV and easyOCR to read text from license plate in a car detected by YOLO&lt;/li&gt;
+&lt;li&gt;Train YOLO on a custom dataset to create model that can detect license plate easily (get the data &lt;a class="link" href="https://universe.roboflow.com/roboflow-universe-projects/license-plate-recognition-rxg4e/dataset/4" target="_blank" rel="noopener"
+&gt;here&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;The video I used in this project can be downloaded &lt;a class="link" href="https://drive.google.com/file/d/12sBfgLICdQEnDSOkVFZiJuUE6d3BeanT/view?usp=sharing" target="_blank" rel="noopener"
+&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;You can see the result below:
+&lt;img src="https://github.com/vuniem131104/License-Plate-Recognition/assets/124224840/72b98f4c-36e7-4e06-ac28-cf60ff25c676"
+loading="lazy"
+alt="Screenshot from 2024-03-01 17-48-36"
+&gt;
+&lt;img src="https://github.com/vuniem131104/License-Plate-Recognition/assets/124224840/70a337d1-99cf-4cc2-a3b6-91f2b5c19c34"
+loading="lazy"
+alt="Screenshot from 2024-03-01 17-48-15"
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="steps-you-should-follow-if-you-want-to-do-the-same"&gt;Steps you should follow if you want to do the same:
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Clone this repo into your local computer and open it in your IDE&lt;/li&gt;
+&lt;li&gt;Download the license plate detector model &lt;a class="link" href="https://drive.google.com/file/d/114gq0wJI5yPzBKDUEPR1NMbeaqqpEdVl/view?usp=sharing" target="_blank" rel="noopener"
+&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Clone &lt;a class="link" href="https://github.com/abewley/sort" target="_blank" rel="noopener"
+&gt;this repo&lt;/a&gt; and put it into the folder you have cloned&lt;/li&gt;
+&lt;li&gt;Execute main.py to create output.csv, then add_missing_data to generate test_interpolated.csv&lt;/li&gt;
+&lt;li&gt;To have a csv file named out2.csv, you should sort test_interpolated.csv by &amp;ldquo;frame_nmr&amp;rdquo; column and save in your local.&lt;/li&gt;
+&lt;li&gt;Last, you run visualize.py to see the results.&lt;/li&gt;
+&lt;li&gt;Good Luck!&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

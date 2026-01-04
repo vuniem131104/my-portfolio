@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Coding Agent on Le Hoang Vu</title><link>https://vuniem131104.github.io/my-portfolio/tags/coding-agent/</link><description>Recent content in Coding Agent on Le Hoang Vu</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 01 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://vuniem131104.github.io/my-portfolio/tags/coding-agent/index.xml" rel="self" type="application/rss+xml"/><item><title>Agentic Coding System</title><link>https://vuniem131104.github.io/my-portfolio/p/agentic-coding-system/</link><pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/agentic-coding-system/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/agentic-coding-system/cover.jpg" alt="Featured image of post Agentic Coding System" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; Private&lt;/p&gt;
+&lt;h1 id="momorph-vscode-extension"&gt;MoMorph VSCode Extension
+&lt;/h1&gt;&lt;p&gt;&lt;em&gt;&lt;em&gt;Sun&lt;/em&gt; MoMorph&lt;/em&gt;* is an AI-powered VSCode extension that transforms Figma designs into production-ready code. Built on top of GitHub Copilot&amp;rsquo;s language models and custom AI agents, MoMorph automates the journey from design to implementation with pixel-perfect accuracy.&lt;/p&gt;
+&lt;h2 id="key-features"&gt;Key Features
+&lt;/h2&gt;&lt;h3 id="figma-to-code-generation"&gt;Figma-to-Code Generation
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Design Integration&lt;/strong&gt;: Direct integration with Figma files linked to your Git repository&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Visual Analysis&lt;/strong&gt;: Download and analyze Figma frames with detailed style extraction&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pixel-Perfect Output&lt;/strong&gt;: Generate UI components matching exact design specifications&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Screenshot Comparison&lt;/strong&gt;: Automated visual regression testing against Figma designs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="ai-powered-workflows"&gt;AI-Powered Workflows
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Specification Generation&lt;/strong&gt;: Automatically create detailed feature specs from Figma designs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Technical Planning&lt;/strong&gt;: Generate implementation plans with architecture decisions&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Code Generation&lt;/strong&gt;: Create Next.js components, NestJS backends, and database schemas&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-Agent System&lt;/strong&gt;: Specialized agents for specification, planning, and implementation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="developer-tools"&gt;Developer Tools
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Chat Participant&lt;/strong&gt;: Interact with &lt;code&gt;@momorph&lt;/code&gt; in GitHub Copilot Chat&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Language Model Tools&lt;/strong&gt;: Custom tools for Figma integration, screenshot comparison, and MCP protocol&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MCP Support&lt;/strong&gt;: Model Context Protocol integration for extensibility&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tree View UI&lt;/strong&gt;: Browse Figma files, frames, and project contexts directly in VSCode&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="supported-use-cases"&gt;Supported Use Cases
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Next.js frontend development with React/TypeScript&lt;/li&gt;
+&lt;li&gt;NestJS backend API generation&lt;/li&gt;
+&lt;li&gt;Database schema design from Figma prototypes&lt;/li&gt;
+&lt;li&gt;UI component testing and validation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="project-structure"&gt;Project Structure
+&lt;/h2&gt;&lt;p&gt;This is a &lt;strong&gt;monorepo&lt;/strong&gt; managed with Yarn workspaces and Turborepo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;morpheus-vscode/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── packages/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── core/ # Core functionality &amp;amp; AI workflows
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── src/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── chat/ # LangGraph workflows &amp;amp; AI agents
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── figma/ # Figma API client
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── github/ # GitHub integration
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── mcp/ # Model Context Protocol
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── morpheus/ # Morpheus AI client
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── vscode/ # VSCode extension implementation
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── src/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── chat/ # Chat participant &amp;amp; handlers
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── commands/ # VSCode commands
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ ├── tree/ # Tree view providers
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ └── views/ # Webview panels
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── resources/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── copilot/ # AI agent definitions
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ ├── icons/ # Extension icons
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ └── prompts/ # System prompts
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── ui/ # Svelte-based webview UI
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── src/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── components/ # UI components
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── pages/ # Webview pages
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── libs/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── ipc/ # Inter-process communication
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── tree-sitter/ # Code parsing utilities
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── deploy/ # Docker deployment configs
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── docs/ # Documentation
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="package-overview"&gt;Package Overview
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;core&lt;/code&gt;&lt;/strong&gt;: Business logic, AI workflows using LangGraph, and integrations (Figma, GitHub, Morpheus AI)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;vscode&lt;/code&gt;&lt;/strong&gt;: VSCode extension host, activation, commands, tree views, and chat participant&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;ui&lt;/code&gt;&lt;/strong&gt;: Svelte-based webview interface for browsing Figma files and contexts&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;libs/ipc&lt;/code&gt;&lt;/strong&gt;: Type-safe IPC messaging between extension and webview&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;libs/tree-sitter&lt;/code&gt;&lt;/strong&gt;: Language parsing for code understanding&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="prerequisites"&gt;Prerequisites
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Node.js&lt;/strong&gt;: Latest LTS version recommended (v20+)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;VSCode&lt;/strong&gt;: Version 1.105.0 or higher&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Yarn&lt;/strong&gt;: 4.6.0 (automatically installed via packageManager field)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GitHub Copilot&lt;/strong&gt;: Active subscription required for AI features&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Figma Account&lt;/strong&gt;: For design file integration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="getting-started"&gt;Getting Started
+&lt;/h2&gt;&lt;h3 id="1-clone-the-repository"&gt;1. Clone the Repository
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone &amp;lt;repository-url&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; morpheus-vscode
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="2-setup-registry-authentication"&gt;2. Setup Registry Authentication
+&lt;/h3&gt;&lt;p&gt;Since this project uses private packages from GitHub Packages:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Accept invitation&lt;/strong&gt; to the npm packages repo (&lt;a class="link" href="https://github.com/sun-asterisk-research/morpheus-npm-pkgs/invitations" target="_blank" rel="noopener"
+&gt;sun-asterisk-research/morpheus-npm-pkgs&lt;/a&gt;)
+&lt;ul&gt;
+&lt;li&gt;Skip if you&amp;rsquo;re already a member of &lt;a class="link" href="https://github.com/sun-asterisk-research" target="_blank" rel="noopener"
+&gt;sun-asterisk-research&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Create a Personal Access Token&lt;/strong&gt; with &lt;code&gt;read:packages&lt;/code&gt; permission (&lt;a class="link" href="https://github.com/settings/tokens" target="_blank" rel="noopener"
+&gt;Create Token&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Login to registry&lt;/strong&gt;:
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yarn npm login --scope @sun-asterisk-research
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Username: Your GitHub username&lt;/li&gt;
+&lt;li&gt;Password: Your personal access token&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="3-install-dependencies"&gt;3. Install Dependencies
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yarn install
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;This will install all dependencies for all packages in the monorepo.&lt;/p&gt;
+&lt;h2 id="development-workflow"&gt;Development Workflow
+&lt;/h2&gt;&lt;h3 id="available-scripts"&gt;Available Scripts
+&lt;/h3&gt;&lt;p&gt;Run these commands from the root directory:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Command&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;yarn dev&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Start development mode with watch (all packages)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;yarn build&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Build all packages for production&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;yarn build:dev&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Build all packages in development mode&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;yarn build:types&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Generate TypeScript declaration files&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;yarn typecheck&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Run TypeScript type checking&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;yarn lint&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Run ESLint on all packages&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;yarn test&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Run tests across all packages&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;yarn package&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Create VSIX package for extension distribution&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;yarn pre-commit&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Format, lint, and typecheck before committing&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="working-on-the-extension"&gt;Working on the Extension
+&lt;/h3&gt;&lt;h4 id="1-start-development-server"&gt;1. Start Development Server
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yarn dev
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;This starts watch mode for all packages. Changes will be automatically recompiled.&lt;/p&gt;
+&lt;h4 id="2-launch-extension-in-debug-mode"&gt;2. Launch Extension in Debug Mode
+&lt;/h4&gt;&lt;p&gt;Choose one of these methods:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Method A&lt;/strong&gt;: Press &lt;code&gt;F5&lt;/code&gt; (default debug shortcut)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Method B&lt;/strong&gt;: Use Run &amp;amp; Debug panel&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open Run &amp;amp; Debug sidebar (&lt;code&gt;Ctrl+Shift+D&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Select &lt;strong&gt;&amp;ldquo;Run Extension (morpheus-vscode)&amp;rdquo;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Click the green play button&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This opens a new &lt;strong&gt;Extension Development Host&lt;/strong&gt; window with MoMorph loaded.&lt;/p&gt;
+&lt;h4 id="3-test-the-extension"&gt;3. Test the Extension
+&lt;/h4&gt;&lt;p&gt;In the Extension Development Host window:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Open Figma Tree View&lt;/strong&gt;: Click the MoMorph icon in the Activity Bar&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Use Chat Participant&lt;/strong&gt;: Open GitHub Copilot Chat and type:
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;@momorph Hi! What can you do?
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Test Figma Integration&lt;/strong&gt;: Ensure your workspace is linked to a Figma file&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="4-reload-changes"&gt;4. Reload Changes
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Extension code changes&lt;/strong&gt; (&lt;code&gt;core&lt;/code&gt; or &lt;code&gt;vscode&lt;/code&gt;):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Press &lt;code&gt;Ctrl+Shift+F5&lt;/code&gt; in Extension Development Host&lt;/li&gt;
+&lt;li&gt;Or use the &amp;ldquo;Restart&amp;rdquo; button in the debug toolbar&lt;/li&gt;
+&lt;li&gt;See &lt;a class="link" href="https://code.visualstudio.com/docs/editor/debugging#_start-a-debugging-session" target="_blank" rel="noopener"
+&gt;VSCode Debugging Docs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Webview UI changes&lt;/strong&gt; (&lt;code&gt;ui&lt;/code&gt; package):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Click on any tree item to reload the webview&lt;/li&gt;
+&lt;li&gt;Or use the &amp;ldquo;Reload&amp;rdquo; button in the webview toolbar&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="developing-chat-features"&gt;Developing Chat Features
+&lt;/h3&gt;&lt;p&gt;MoMorph uses &lt;strong&gt;LangGraph&lt;/strong&gt; for AI workflows. Read the detailed guide:&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="./docs/chat_development.md" &gt;Chat Development Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Quick Overview&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Workflows&lt;/strong&gt;: Define multi-step AI processes in &lt;code&gt;packages/core/src/chat/graphs/workflows/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agents&lt;/strong&gt;: Custom Copilot agents in &lt;code&gt;packages/vscode/resources/copilot/agents/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tools&lt;/strong&gt;: Language model tools registered in &lt;code&gt;packages/vscode/package.json&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="code-quality--pre-commit-checks"&gt;Code Quality &amp;amp; Pre-commit Checks
+&lt;/h3&gt;&lt;p&gt;Before committing, run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yarn pre-commit
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;This will:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Format code with Prettier&lt;/li&gt;
+&lt;li&gt;Run ESLint checks&lt;/li&gt;
+&lt;li&gt;Perform TypeScript type checking&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="project-configuration-files"&gt;Project Configuration Files
+&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;File&lt;/th&gt;
+&lt;th&gt;Purpose&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;.vscode/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;VSCode settings and launch configurations&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;.yarnrc.yml&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Yarn package manager configuration&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;turbo.json&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Turborepo build pipeline and caching&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;tsconfig.base.json&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Shared TypeScript configuration&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;eslint.config.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;ESLint rules and plugins&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;package.json&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Workspace configuration and scripts&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="building-and-packaging"&gt;Building and Packaging
+&lt;/h2&gt;&lt;h3 id="create-vsix-package"&gt;Create VSIX Package
+&lt;/h3&gt;&lt;p&gt;To create a distributable &lt;code&gt;.vsix&lt;/code&gt; file:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ensure tests pass&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yarn &lt;span class="nb"&gt;test&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Build the extension&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yarn build
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Create VSIX package&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yarn package
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The &lt;code&gt;.vsix&lt;/code&gt; file will be generated in &lt;code&gt;packages/vscode/dist/&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id="installing-the-vsix"&gt;Installing the VSIX
+&lt;/h3&gt;&lt;p&gt;To install the extension from VSIX:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;code --install-extension packages/vscode/dist/vscode-momorph-*.vsix
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Or use VSCode UI:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open Extensions view (&lt;code&gt;Ctrl+Shift+X&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Click &lt;code&gt;...&lt;/code&gt; (Views and More Actions)&lt;/li&gt;
+&lt;li&gt;Select &amp;ldquo;Install from VSIX&amp;hellip;&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Choose the generated &lt;code&gt;.vsix&lt;/code&gt; file&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="testing"&gt;Testing
+&lt;/h2&gt;&lt;p&gt;The project uses VSCode Extension Test framework:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yarn &lt;span class="nb"&gt;test&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;This runs tests across all packages that have test suites configured.&lt;/p&gt;
+&lt;h2 id="architecture"&gt;Architecture
+&lt;/h2&gt;&lt;h3 id="technology-stack"&gt;Technology Stack
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Language&lt;/strong&gt;: TypeScript&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Package Manager&lt;/strong&gt;: Yarn 4 with workspaces&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Build System&lt;/strong&gt;: Turborepo for monorepo orchestration&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Bundler&lt;/strong&gt;: esbuild (extension) + Vite (UI)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UI Framework&lt;/strong&gt;: Svelte 5 with TypeScript&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI Framework&lt;/strong&gt;: LangGraph for multi-agent workflows&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Testing&lt;/strong&gt;: VSCode Extension Test Runner&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="key-integrations"&gt;Key Integrations
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GitHub Copilot&lt;/strong&gt;: Base language models and chat participant API&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Figma API&lt;/strong&gt;: Design file access and image rendering&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Model Context Protocol&lt;/strong&gt;: Extensible tool system&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Morpheus AI&lt;/strong&gt;: Custom code generation backend&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GitHub API&lt;/strong&gt;: Repository and authentication management&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="communication-flow"&gt;Communication Flow
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;VSCode Extension Host
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Chat Participant (@momorph)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;LangGraph Workflows (AI Agents)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ├─→ Language Model (GitHub Copilot)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ├─→ Tools (Figma, GitHub, File Operations)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ├─→ MCP Servers
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └─→ Morpheus AI Backend
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item></channel></rss>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>YOLO on Le Hoang Vu</title><link>https://vuniem131104.github.io/my-portfolio/tags/yolo/</link><description>Recent content in YOLO on Le Hoang Vu</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 01 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://vuniem131104.github.io/my-portfolio/tags/yolo/index.xml" rel="self" type="application/rss+xml"/><item><title>License Plate Recognition</title><link>https://vuniem131104.github.io/my-portfolio/p/license-plate-recognition/</link><pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/license-plate-recognition/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/license-plate-recognition/cover.jpg" alt="Featured image of post License Plate Recognition" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; &lt;a class="link" href="https://github.com/vuniem131104/License-Plate-Recognition" target="_blank" rel="noopener"
+&gt;License-Plate-Recognition&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="summary"&gt;Summary
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Use openCV and easyOCR to read text from license plate in a car detected by YOLO&lt;/li&gt;
+&lt;li&gt;Train YOLO on a custom dataset to create model that can detect license plate easily (get the data &lt;a class="link" href="https://universe.roboflow.com/roboflow-universe-projects/license-plate-recognition-rxg4e/dataset/4" target="_blank" rel="noopener"
+&gt;here&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;The video I used in this project can be downloaded &lt;a class="link" href="https://drive.google.com/file/d/12sBfgLICdQEnDSOkVFZiJuUE6d3BeanT/view?usp=sharing" target="_blank" rel="noopener"
+&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;You can see the result below:
+&lt;img src="https://github.com/vuniem131104/License-Plate-Recognition/assets/124224840/72b98f4c-36e7-4e06-ac28-cf60ff25c676"
+loading="lazy"
+alt="Screenshot from 2024-03-01 17-48-36"
+&gt;
+&lt;img src="https://github.com/vuniem131104/License-Plate-Recognition/assets/124224840/70a337d1-99cf-4cc2-a3b6-91f2b5c19c34"
+loading="lazy"
+alt="Screenshot from 2024-03-01 17-48-15"
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="steps-you-should-follow-if-you-want-to-do-the-same"&gt;Steps you should follow if you want to do the same:
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Clone this repo into your local computer and open it in your IDE&lt;/li&gt;
+&lt;li&gt;Download the license plate detector model &lt;a class="link" href="https://drive.google.com/file/d/114gq0wJI5yPzBKDUEPR1NMbeaqqpEdVl/view?usp=sharing" target="_blank" rel="noopener"
+&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Clone &lt;a class="link" href="https://github.com/abewley/sort" target="_blank" rel="noopener"
+&gt;this repo&lt;/a&gt; and put it into the folder you have cloned&lt;/li&gt;
+&lt;li&gt;Execute main.py to create output.csv, then add_missing_data to generate test_interpolated.csv&lt;/li&gt;
+&lt;li&gt;To have a csv file named out2.csv, you should sort test_interpolated.csv by &amp;ldquo;frame_nmr&amp;rdquo; column and save in your local.&lt;/li&gt;
+&lt;li&gt;Last, you run visualize.py to see the results.&lt;/li&gt;
+&lt;li&gt;Good Luck!&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
