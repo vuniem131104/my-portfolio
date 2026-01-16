@@ -25,7 +25,7 @@ Oct 2022 – Jan 2026
 
 **Sun Asterisk Inc**  
 AI Engineer Fresher  
-May 2025 – Present
+April 2025 – Present
 
 **Finpros Investment Joint Stock Company**  
 AI Engineer Intern  
@@ -33,4 +33,4 @@ June 2024 – Sep 2024
 
 **HMI Laboratory (UET-VNU)**  
 AI Research Assistant  
-Sep 2024 – May 2025
+Sep 2024 – April 2025
