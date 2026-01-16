@@ -33,4 +33,4 @@ June 2024 – Sep 2024
 
 **HMI Laboratory (UET-VNU)**  
 AI Research Assistant  
-Sep 2024 – April 2025
+April 2024 – April 2025
