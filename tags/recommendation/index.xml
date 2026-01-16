@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Recommendation on Le Hoang Vu</title><link>https://vuniem131104.github.io/my-portfolio/tags/recommendation/</link><description>Recent content in Recommendation on Le Hoang Vu</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 01 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://vuniem131104.github.io/my-portfolio/tags/recommendation/index.xml" rel="self" type="application/rss+xml"/><item><title>Chatbot Recommendation System</title><link>https://vuniem131104.github.io/my-portfolio/p/recommendation-system/</link><pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/recommendation-system/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/recommendation-system/cover.jpg" alt="Featured image of post Chatbot Recommendation System" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; Private&lt;/p&gt;
+&lt;h1 id="graph-based-recommendation-system"&gt;Graph-Based Recommendation System
+&lt;/h1&gt;&lt;div align="center"&gt;
+&lt;p&gt;&lt;img src="https://img.shields.io/badge/version-4.1.0-blue.svg"
+loading="lazy"
+alt="Version"
+&gt;
+&lt;img src="https://img.shields.io/badge/python-3.11&amp;#43;-green.svg"
+loading="lazy"
+alt="Python"
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Intelligent Chatbot Recommendation System powered by Graph Retrieval&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;An enterprise-grade recommendation system that leverages graph databases, semantic search, and conversational AI to provide context-aware product recommendations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="table-of-contents"&gt;Table of Contents
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="#-overview" &gt;Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-how-it-works" &gt;How It Works&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-architecture" &gt;Architecture&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-key-technologies" &gt;Key Technologies&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-recommendation-flow" &gt;Recommendation Flow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-features" &gt;Features&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview
+&lt;/h2&gt;&lt;p&gt;The &lt;strong&gt;Sun Assistant Recommendation System&lt;/strong&gt; is designed to provide intelligent product recommendations through natural language conversations. By combining &lt;strong&gt;Graph Retrieval&lt;/strong&gt;, &lt;strong&gt;Semantic Search&lt;/strong&gt;, and &lt;strong&gt;Conversational AI&lt;/strong&gt;, the system delivers accurate, context-aware recommendations that understand user intent and product relationships.&lt;/p&gt;
+&lt;h3 id="core-capabilities"&gt;Core Capabilities
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Hybrid Search&lt;/strong&gt; - Combines BM25 keyword matching with semantic embedding scores&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph Retrieval&lt;/strong&gt; - Leverages Neo4j to discover product relationships and connections&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Conversational Interface&lt;/strong&gt; - Natural language interaction through chatbot&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent Ranking&lt;/strong&gt; - Multi-factor scoring including relevance, popularity, and context&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Context Awareness&lt;/strong&gt; - Maintains conversation history for better recommendations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="how-it-works"&gt;How It Works
+&lt;/h2&gt;&lt;p&gt;The recommendation system follows a sophisticated multi-stage pipeline:&lt;/p&gt;
+&lt;h3 id="1-query-understanding"&gt;1. &lt;strong&gt;Query Understanding&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;The chatbot processes user queries using LLM (Large Language Models) to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Extract user intent and preferences&lt;/li&gt;
+&lt;li&gt;Identify key entities and attributes&lt;/li&gt;
+&lt;li&gt;Decompose complex questions into sub-queries&lt;/li&gt;
+&lt;li&gt;Maintain conversation context&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2-multi-source-retrieval"&gt;2. &lt;strong&gt;Multi-Source Retrieval&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;The system retrieves candidate products from three complementary sources:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Vector Search (OpenSearch)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Semantic similarity using embeddings&lt;/li&gt;
+&lt;li&gt;Captures meaning beyond exact keywords&lt;/li&gt;
+&lt;li&gt;Returns products with similar descriptions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Keyword Search (BM25)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Traditional text matching&lt;/li&gt;
+&lt;li&gt;Effective for exact product names or specifications&lt;/li&gt;
+&lt;li&gt;Handles specific attribute queries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Graph Retrieval (Neo4j)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Discovers product relationships&lt;/li&gt;
+&lt;li&gt;Finds similar or complementary products&lt;/li&gt;
+&lt;li&gt;Traverses connections like &amp;ldquo;bought together&amp;rdquo;, &amp;ldquo;similar to&amp;rdquo;, &amp;ldquo;alternative for&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Explores product hierarchies and categories&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="3-ranking--filtering"&gt;3. &lt;strong&gt;Ranking &amp;amp; Filtering&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Retrieved candidates are scored and filtered using:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Relevance Score&lt;/strong&gt;: Combination of BM25 and embedding similarity&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph Score&lt;/strong&gt;: Relationship strength from Neo4j&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Business Rules&lt;/strong&gt;: Availability, price range, categories&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Context Filtering&lt;/strong&gt;: User preferences and conversation history&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="4-answer-generation"&gt;4. &lt;strong&gt;Answer Generation&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;The chatbot synthesizes recommendations into natural language:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Explains why products are recommended&lt;/li&gt;
+&lt;li&gt;Highlights key features and benefits&lt;/li&gt;
+&lt;li&gt;Provides comparison insights&lt;/li&gt;
+&lt;li&gt;Asks clarifying questions when needed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="architecture"&gt;Architecture
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;span class="lnt"&gt;36
+&lt;/span&gt;&lt;span class="lnt"&gt;37
+&lt;/span&gt;&lt;span class="lnt"&gt;38
+&lt;/span&gt;&lt;span class="lnt"&gt;39
+&lt;/span&gt;&lt;span class="lnt"&gt;40
+&lt;/span&gt;&lt;span class="lnt"&gt;41
+&lt;/span&gt;&lt;span class="lnt"&gt;42
+&lt;/span&gt;&lt;span class="lnt"&gt;43
+&lt;/span&gt;&lt;span class="lnt"&gt;44
+&lt;/span&gt;&lt;span class="lnt"&gt;45
+&lt;/span&gt;&lt;span class="lnt"&gt;46
+&lt;/span&gt;&lt;span class="lnt"&gt;47
+&lt;/span&gt;&lt;span class="lnt"&gt;48
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;┌─────────────────────────────────────────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ User Query (NL) │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ &amp;#34;Show me running shoes under $100&amp;#34; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└────────────────────┬────────────────────────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ┌──────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ Chatbot Service │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ (Query Processing) │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Intent Extraction │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Sub-questions │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Context Manager │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └──────────┬───────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ┌────────────┼────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ │ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼ ▼ ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;┌──────────┐ ┌──────────┐ ┌──────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│OpenSearch│ │ Neo4j │ │Azure AI │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ Graph │ │ Search │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ Semantic │ │ Relation │ │ BM25 │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ Vectors │ │ Traversal│ │ Keywords │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└────┬─────┘ └────┬─────┘ └────┬─────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ │ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └────────────┼────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ┌─────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ Ranking Engine │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Score Fusion │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Filter Rules │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Context Weight │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └──────────┬──────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ┌─────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ Answer Generator │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ (LLM Synthesis) │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Format Results │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Add Explanations │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Generate Response│
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └──────────┬──────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ┌─────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ Natural Language │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ Response │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └─────────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="key-technologies"&gt;Key Technologies
+&lt;/h2&gt;&lt;h3 id="graph-database-neo4j"&gt;Graph Database (Neo4j)
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Why Graph for Recommendations?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Graph databases excel at representing and querying relationships:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Product Relationships&lt;/strong&gt;: &amp;ldquo;similar_to&amp;rdquo;, &amp;ldquo;complementary&amp;rdquo;, &amp;ldquo;bought_together&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Category Hierarchies&lt;/strong&gt;: Navigate from specific items to broader categories&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;User Preferences&lt;/strong&gt;: Track user interests and interaction patterns&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fast Traversals&lt;/strong&gt;: Efficiently explore multi-hop connections&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Example Graph Query:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;// Find products similar to running shoes
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;MATCH (p:Product {name: &amp;#34;Nike Air Max&amp;#34;})-[:SIMILAR_TO]-&amp;gt;(similar:Product)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;WHERE similar.price &amp;lt; 100
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;RETURN similar.name, similar.price, similar.rating
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ORDER BY similar.rating DESC
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;LIMIT 5
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="vector-search-opensearch"&gt;Vector Search (OpenSearch)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Stores product embeddings (768-dimensional vectors)&lt;/li&gt;
+&lt;li&gt;Performs semantic similarity search&lt;/li&gt;
+&lt;li&gt;Captures meaning beyond exact text matches&lt;/li&gt;
+&lt;li&gt;Fast approximate nearest neighbor (ANN) search&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="hybrid-scoring"&gt;Hybrid Scoring
+&lt;/h3&gt;&lt;p&gt;Combines multiple signals for optimal results:&lt;/p&gt;
+$$
+\text{FinalScore} = \alpha \cdot \text{BM25Score} + \beta \cdot \text{EmbeddingScore} + \gamma \cdot \text{GraphScore}
+$$&lt;p&gt;Where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\alpha, \beta, \gamma$ are tunable weights&lt;/li&gt;
+&lt;li&gt;BM25Score: Keyword relevance&lt;/li&gt;
+&lt;li&gt;EmbeddingScore: Semantic similarity&lt;/li&gt;
+&lt;li&gt;GraphScore: Relationship strength&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="recommendation-flow"&gt;Recommendation Flow
+&lt;/h2&gt;&lt;h3 id="example-conversation"&gt;Example Conversation
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;User:&lt;/strong&gt; &amp;ldquo;I need running shoes for trail running&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;System Process:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Query Analysis&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Intent: Product search&lt;/li&gt;
+&lt;li&gt;Category: Shoes → Running Shoes → Trail Running&lt;/li&gt;
+&lt;li&gt;Constraints: None explicit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Retrieval&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Vector Search&lt;/strong&gt;: Products with similar descriptions to &amp;ldquo;trail running shoes&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BM25&lt;/strong&gt;: Exact matches for &amp;ldquo;trail running&amp;rdquo; and &amp;ldquo;shoes&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph&lt;/strong&gt;:
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Trail Running → requires → Trail Running Shoes
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Trail Running Shoes → similar_to → Hiking Shoes
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Trail Running Shoes → complementary → Running Socks
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ranking&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Top 10 trail running shoes by combined score&lt;/li&gt;
+&lt;li&gt;Filter by availability and ratings&lt;/li&gt;
+&lt;li&gt;Boost popular brands&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;I found 5 great trail running shoes for you:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;1. Salomon Speedcross 5 ($130) ⭐ 4.8/5
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - Excellent grip for technical trails
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - Waterproof design
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2. Brooks Cascadia 16 ($140) ⭐ 4.7/5
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - Comfortable for long distances
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - Good cushioning
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Would you like more details or have a specific price range?
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;User:&lt;/strong&gt; &amp;ldquo;Something under $100?&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;System Process:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Context Update&lt;/strong&gt;: Add price constraint &amp;lt; $100&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Re-rank&lt;/strong&gt;: Apply price filter to previous results&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph Expansion&lt;/strong&gt;: Look for alternatives in lower price range&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Response&lt;/strong&gt;: Updated recommendations within budget&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id="features"&gt;Features
+&lt;/h2&gt;&lt;h3 id="intelligent-query-understanding"&gt;Intelligent Query Understanding
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Multi-turn conversation with context retention&lt;/li&gt;
+&lt;li&gt;Intent classification and entity extraction&lt;/li&gt;
+&lt;li&gt;Handles ambiguous queries with clarifying questions&lt;/li&gt;
+&lt;li&gt;Understands synonyms and variations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="multi-modal-retrieval"&gt;Multi-Modal Retrieval
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Semantic Search&lt;/strong&gt;: Understands meaning and context&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Keyword Matching&lt;/strong&gt;: Precise for specific terms&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph Traversal&lt;/strong&gt;: Discovers related products through relationships&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="advanced-ranking"&gt;Advanced Ranking
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Relevance&lt;/strong&gt;: How well product matches query&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Popularity&lt;/strong&gt;: User ratings and purchase frequency&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Freshness&lt;/strong&gt;: Recent additions and trending items&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Diversity&lt;/strong&gt;: Varied results to increase discovery&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="graph-powered-insights"&gt;Graph-Powered Insights
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;Customers who bought this also bought&amp;hellip;&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Similar products you might like&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Complete your set with&amp;hellip;&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Product comparison and alternatives&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="personalization-future"&gt;Personalization (Future)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;User preference learning&lt;/li&gt;
+&lt;li&gt;Interaction history tracking&lt;/li&gt;
+&lt;li&gt;Collaborative filtering via graph&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="benefits"&gt;Benefits
+&lt;/h2&gt;&lt;h3 id="for-users"&gt;For Users
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Natural language interaction - no complex filters needed&lt;/li&gt;
+&lt;li&gt;Discover products through relationships and connections&lt;/li&gt;
+&lt;li&gt;Contextual recommendations that understand intent&lt;/li&gt;
+&lt;li&gt;Explanations for why products are recommended&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="for-business"&gt;For Business
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Better product discovery → higher conversion&lt;/li&gt;
+&lt;li&gt;Relationship-based recommendations → cross-selling&lt;/li&gt;
+&lt;li&gt;Understand product connections and gaps&lt;/li&gt;
+&lt;li&gt;Scalable architecture for large catalogs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="technical-advantages"&gt;Technical Advantages
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Flexible&lt;/strong&gt;: Easy to add new relationship types&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Explainable&lt;/strong&gt;: Graph paths show recommendation reasoning&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scalable&lt;/strong&gt;: Distributed search and graph processing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accurate&lt;/strong&gt;: Hybrid approach combines best of multiple methods&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="performance"&gt;Performance
+&lt;/h2&gt;&lt;h3 id="retrieval-speed"&gt;Retrieval Speed
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Vector Search: &amp;lt; 50ms (top 100 candidates)&lt;/li&gt;
+&lt;li&gt;Graph Traversal: &amp;lt; 100ms (2-3 hop queries)&lt;/li&gt;
+&lt;li&gt;BM25 Search: &amp;lt; 30ms&lt;/li&gt;
+&lt;li&gt;Total Recommendation Time: &amp;lt; 500ms&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="accuracy-metrics"&gt;Accuracy Metrics
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Precision@5&lt;/strong&gt;: Relevance of top 5 results&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Recall@20&lt;/strong&gt;: Coverage of relevant products&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MRR&lt;/strong&gt; (Mean Reciprocal Rank): Position of first relevant result&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph Coverage&lt;/strong&gt;: % of products connected in graph&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="technology-stack"&gt;Technology Stack
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Component&lt;/th&gt;
+&lt;th&gt;Technology&lt;/th&gt;
+&lt;th&gt;Purpose&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Chatbot Engine&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;LangGraph, FastAPI&lt;/td&gt;
+&lt;td&gt;Conversation orchestration&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;LLM&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Azure OpenAI, Claude&lt;/td&gt;
+&lt;td&gt;Query understanding &amp;amp; generation&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Vector DB&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;OpenSearch&lt;/td&gt;
+&lt;td&gt;Semantic search&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Graph DB&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Neo4j 5.22&lt;/td&gt;
+&lt;td&gt;Relationship retrieval&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Search&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Azure AI Search&lt;/td&gt;
+&lt;td&gt;BM25 keyword matching&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Backend&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Python 3.11+, FastAPI&lt;/td&gt;
+&lt;td&gt;API services&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Embeddings&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Azure OpenAI Ada-002&lt;/td&gt;
+&lt;td&gt;Text to vectors&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="key-learnings"&gt;Key Learnings
+&lt;/h2&gt;&lt;h3 id="why-graph-retrieval"&gt;Why Graph Retrieval?
+&lt;/h3&gt;&lt;p&gt;Traditional recommendation systems rely on:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Content-based filtering (similar features)&lt;/li&gt;
+&lt;li&gt;Collaborative filtering (similar users)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Graph retrieval adds:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Explicit relationship modeling&lt;/li&gt;
+&lt;li&gt;Multi-hop reasoning&lt;/li&gt;
+&lt;li&gt;Explainable connections&lt;/li&gt;
+&lt;li&gt;Dynamic relationship discovery&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="hybrid-is-better"&gt;Hybrid is Better
+&lt;/h3&gt;&lt;p&gt;No single retrieval method is perfect:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Vectors capture semantics but miss exact matches&lt;/li&gt;
+&lt;li&gt;Keywords find exact terms but miss meaning&lt;/li&gt;
+&lt;li&gt;Graphs discover relationships but need initial candidates&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Combining all three provides the best results.&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;div align="center"&gt;
+&lt;p&gt;&lt;strong&gt;Built by Sun Asterisk&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Intelligent recommendations through conversational AI and graph intelligence&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;</description></item></channel></rss>

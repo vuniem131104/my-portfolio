@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GAN on Le Hoang Vu</title><link>https://vuniem131104.github.io/my-portfolio/tags/gan/</link><description>Recent content in GAN on Le Hoang Vu</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 01 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://vuniem131104.github.io/my-portfolio/tags/gan/index.xml" rel="self" type="application/rss+xml"/><item><title>Image Super-Resolution</title><link>https://vuniem131104.github.io/my-portfolio/p/image-super-resolution/</link><pubDate>Sat, 01 Feb 2025 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/image-super-resolution/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/image-super-resolution/cover.jpg" alt="Featured image of post Image Super-Resolution" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; &lt;a class="link" href="https://github.com/vuniem131104/Super-Resolution-With-Pytorch" target="_blank" rel="noopener"
+&gt;Super-Resolution-With-Pytorch&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="overview"&gt;Overview
+&lt;/h1&gt;&lt;p&gt;This repo is the implementation of SRRESNET and SRGAN in super resolution task for blurry images&lt;/p&gt;
+&lt;h2 id="srresnet-architecture"&gt;SRRESNET ARCHITECTURE
+&lt;/h2&gt;&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/fead4ca9-4071-4ef5-a95b-da99f52366f2"
+loading="lazy"
+alt="image"
+&gt;
+The SRResNet is composed of the following operations –&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First, the low resolution image is convolved with a large kernel size 9x9 and a stride of 1, producing a feature map at the same resolution but with
+64 channels. A parametric ReLU (PReLU) activation is applied.&lt;/li&gt;
+&lt;li&gt;This feature map is passed through 16 residual blocks, each consisting of a convolution with a 3x3 kernel and a stride of 1, batch normalization and PReLU activation, another but similar convolution, and a second batch normalization. The resolution and number of channels are maintained in each convolutional layer.&lt;/li&gt;
+&lt;li&gt;The result from the series of residual blocks is passed through a convolutional layer with a 3x3 kernel and a stride of 1, and batch normalized. The resolution and number of channels are maintained. In addition to the skip connections in each residual block (by definition), there is a larger skip connection arching across all residual blocks and this convolutional layer.&lt;/li&gt;
+&lt;li&gt;2 subpixel convolution blocks, each upscaling dimensions by a factor of 2 (followed by PReLU activation), produce a net 4x upscaling. The number of channels is maintained.&lt;/li&gt;
+&lt;li&gt;Finally, a convolution with a large kernel size 9x9 and a stride of 1 is applied at this higher resolution, and the result is Tanh-activated to produce the super-resolved image with RGB channels in the range [-1, 1].&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="the-srresnet-update"&gt;The SRResNet Update
+&lt;/h3&gt;&lt;p&gt;Training the SRResNet, like any network, is composed of a series of updates to its parameters. What might constitute such an update?&lt;/p&gt;
+&lt;p&gt;Our training data will consist of high-resolution (gold) images, and their low-resolution counterparts which we create by 4x-downsampling them using bicubic interpolation.&lt;/p&gt;
+&lt;p&gt;In the forward pass, the SRResNet produces a &lt;strong&gt;super-resolved image at 4x the dimensions of the low-resolution image&lt;/strong&gt; that was provided to it.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/20a2baa9-1532-4a23-9522-ea36ee35f685"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;p&gt;We use the &lt;strong&gt;Mean-Squared Error (MSE) as the loss function&lt;/strong&gt; to compare the super-resolved image with this original, gold high-resolution image that was used to create the low-resolution image.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/5ac9201c-b9bb-4621-ac4c-75183bc41ebb"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;p&gt;Choosing to minimize the MSE between the super-resolved and gold images means we will change the parameters of the SRResNet in a way that, if given the low-resolution image again, it will &lt;strong&gt;create a super-resolved image that is closer in appearance to the original high-resolution version&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The MSE loss is a type of &lt;strong&gt;&lt;em&gt;content&lt;/em&gt; loss&lt;/strong&gt;, because it is based purely on the contents of the predicted and target images.&lt;/p&gt;
+&lt;p&gt;In this specific case, we are considering their contents in the &lt;em&gt;&lt;strong&gt;RGB space&lt;/strong&gt;&lt;/em&gt; – we will discuss the significance of this soon.&lt;/p&gt;
+&lt;h2 id="srgan-architecture"&gt;SRGAN ARCHITECTURE
+&lt;/h2&gt;&lt;p&gt;It consists of a &lt;em&gt;Generator&lt;/em&gt; and a &lt;strong&gt;Discriminator&lt;/strong&gt; as other conventional GANS&lt;/p&gt;
+&lt;h3 id="generator"&gt;GENERATOR
+&lt;/h3&gt;&lt;p&gt;It will be the same as the &lt;strong&gt;SRRESNET&lt;/strong&gt;, and we will take the pretrained &lt;strong&gt;SRRESNET&lt;/strong&gt; to initialize for the &lt;strong&gt;GENERATOR&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id="discriminator"&gt;DISCRIMINATOR
+&lt;/h3&gt;&lt;p&gt;As you might expect, the Discriminator is a convolutional network that functions as a &lt;strong&gt;binary image classifier&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/3ca77488-9508-40a8-a10d-a8a7d3d8769e"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;p&gt;It is composed of the following operations –&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The high-resolution image (of natural or artificial origin) is convolved with a large kernel size $9\times9$ and a stride of $1$, producing a feature map at the same resolution but with $64$ channels. A leaky &lt;em&gt;ReLU&lt;/em&gt; activation is applied.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This feature map is passed through $7$ &lt;strong&gt;convolutional blocks&lt;/strong&gt;, each consisting of a convolution with a $3\times3$ kernel, batch normalization, and leaky &lt;em&gt;ReLU&lt;/em&gt; activation. The number of channels is doubled in even-indexed blocks. Feature map dimensions are halved in odd-indexed blocks using a stride of $2$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The result from this series of convolutional blocks is flattened and linearly transformed into a vector of size $1024$, followed by leaky &lt;em&gt;ReLU&lt;/em&gt; activation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A final linear transformation yields a single logit, which can be converted into a probability score using the &lt;em&gt;Sigmoid&lt;/em&gt; activation function. This indicates the &lt;strong&gt;probability of the original input being a natural (gold) image&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="generator-update"&gt;GENERATOR UPDATE
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;We will update the generator by using pretrained VGG19 model from torchvision. We no longer compare the orginial high resolution images with super resolution images but we compare their outputs after forward them through &lt;strong&gt;the truncated VGGV19&lt;/strong&gt;. \&lt;/li&gt;
+&lt;li&gt;Moreover, we utilize the advantage of an adversirial loss by using BCEWithLogitsLoss in pytorch to compare super resolution images passing through the discriminator and it &lt;strong&gt;untrue label (1)&lt;/strong&gt;.
+&lt;img src="https://github.com/user-attachments/assets/42df0edf-6c99-4439-b211-8d6f5aa74f52"
+loading="lazy"
+alt="image"
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="discriminator-update"&gt;DISCRIMINATOR UPDATE
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;It is very straightforward because it just distinguish between high resolution images with real labels (1) and super resolution images with it real labels (0).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="training-models"&gt;TRAINING MODELS
+&lt;/h2&gt;&lt;p&gt;Our models are trained on COCO2024 dataset. If you want to train on your dataset, please do the following steps:&lt;/p&gt;
+&lt;h3 id="train-srresnet"&gt;Train SRRESNET
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 train_srresnet.py --data_folder &amp;lt;your data directory&amp;gt; --batch_size &amp;lt;your batch size&amp;gt; --epochs &amp;lt;epochs to train models&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="train-srgan"&gt;Train SRGAN
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 train_srgan.py --data_folder &amp;lt;your data directory&amp;gt; --batch_size &amp;lt;your batch size&amp;gt; --epochs &amp;lt;epochs to train models&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="testing-models"&gt;TESTING MODELS
+&lt;/h2&gt;&lt;h3 id="test-srresnet-with-images"&gt;Test SRRESNET with images
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 test_srresnet.py --image_path &amp;lt;path to your image&amp;gt; --srresnet_ckpt &amp;lt;your srresnet checkpoint&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="test-srgan-with-images"&gt;Test SRGAN with images
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 test_srgan.py --image_path &amp;lt;path to your image&amp;gt; --srgan_ckpt &amp;lt;your srgan checkpoint&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="result"&gt;RESULT
+&lt;/h2&gt;&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/bf2d44de-d458-4281-81cc-1654c4c559db"
+loading="lazy"
+alt="flowers"
+&gt;
+&lt;img src="https://github.com/user-attachments/assets/b17e1c5e-4e8c-44cc-9f6a-9963e72cfb1c"
+loading="lazy"
+alt="man"
+&gt;&lt;/p&gt;</description></item></channel></rss>

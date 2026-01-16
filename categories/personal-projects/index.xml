@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Personal Projects on Le Hoang Vu</title><link>https://vuniem131104.github.io/my-portfolio/categories/personal-projects/</link><description>Recent content in Personal Projects on Le Hoang Vu</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://vuniem131104.github.io/my-portfolio/categories/personal-projects/index.xml" rel="self" type="application/rss+xml"/><item><title>Multiple Choice Question Generation using LLMs and Knowledge Graphs</title><link>https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/</link><pubDate>Mon, 15 Dec 2025 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/cover.jpg" alt="Featured image of post Multiple Choice Question Generation using LLMs and Knowledge Graphs" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; &lt;a class="link" href="https://github.com/vuniem131104/Multiple-Choice-Question-Generation-With-LLMs-and-KG" target="_blank" rel="noopener"
+&gt;Multiple-Choice-Question-Generation&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="ai-powered-multiple-choice-question-mcq-generation-platform"&gt;AI-Powered Multiple Choice Question (MCQ) Generation Platform
+&lt;/h1&gt;&lt;p&gt;An intelligent educational platform for automated Multiple Choice Question (MCQ) generation using Retrieval-Augmented Generation (RAG) and Knowledge Graph technologies. The system leverages course materials to generate contextually relevant, high-quality MCQs for assessment and practice. Built with support for multiple AI models through LiteLLM and Neo4j knowledge graph for enhanced question generation.&lt;/p&gt;
+&lt;h2 id="architecture"&gt;Architecture
+&lt;/h2&gt;&lt;p&gt;This is a microservices-based application with the following components:&lt;/p&gt;
+&lt;h3 id="services"&gt;Services
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Auth Service&lt;/strong&gt; (&lt;code&gt;port 3001&lt;/code&gt;): User authentication and authorization&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Generation Service&lt;/strong&gt; (&lt;code&gt;port 3005&lt;/code&gt;): MCQ generation using LLM models with RAG&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RAG Service&lt;/strong&gt; (&lt;code&gt;port 3011&lt;/code&gt;): Retrieval-Augmented Generation for context extraction&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Indexing Service&lt;/strong&gt; (&lt;code&gt;port 3006&lt;/code&gt;): Document processing and knowledge graph indexing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Frontend&lt;/strong&gt; (&lt;code&gt;port 3000&lt;/code&gt;): React-based web interface for MCQ management&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="infrastructure"&gt;Infrastructure
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;LiteLLM&lt;/strong&gt; (&lt;code&gt;port 9510&lt;/code&gt;): Unified interface for multiple LLM providers (Gemini, Azure OpenAI, AWS Claude)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Neo4j&lt;/strong&gt; (&lt;code&gt;port 17474/17687&lt;/code&gt;): Graph database for knowledge representation&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PostgreSQL&lt;/strong&gt; (&lt;code&gt;port 15432&lt;/code&gt;): Relational database for user and course data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MinIO&lt;/strong&gt; (&lt;code&gt;port 9000/9001&lt;/code&gt;): Object storage for documents and media&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ollama&lt;/strong&gt; (&lt;code&gt;port 11434&lt;/code&gt;): Local LLM hosting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="multiple-choice-question-generation-pipeline"&gt;Multiple-Choice Question Generation Pipeline
+&lt;/h3&gt;&lt;p&gt;This pipeline involves several steps to generate high-quality MCQs as shown below:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/mcq.png"
+width="1149"
+height="733"
+srcset="https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/mcq_hu_e9b7c7f2b5951242.png 480w, https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/mcq_hu_d313a3824077dcbf.png 1024w"
+loading="lazy"
+alt="alt text"
+class="gallery-image"
+data-flex-grow="156"
+data-flex-basis="376px"
+&gt;&lt;/p&gt;
+&lt;h2 id="project-structure"&gt;Project Structure
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;KLTN/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── services/ # Microservices
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── auth/ # Authentication service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── generation/ # MCQ generation service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── indexing/ # Document indexing service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── rag/ # RAG context retrieval service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── frontend/ # React frontend application
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── libs/ # Shared libraries
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── base/ # Base utilities
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── graph_db/ # Neo4j integration
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── lite_llm/ # LiteLLM wrapper
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── logger/ # Logging utilities
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── postgres_db/ # PostgreSQL integration
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── storage/ # MinIO storage utilities
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── docker/ # Dockerfiles for services
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── database/ # Database initialization scripts
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── outputs/ # Analysis outputs and results
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── archive/ # Research and evaluation scripts
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── config.yaml # LiteLLM configuration
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── docker-compose.yml # Docker orchestration
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="constructed-knowledge-graph"&gt;Constructed Knowledge Graph
+&lt;/h2&gt;&lt;p&gt;The knowledge graph is built from course materials, capturing concepts, relationships, and entities. It enables context-aware MCQ generation by providing structured information for question formulation.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/kg.png"
+width="1030"
+height="411"
+srcset="https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/kg_hu_9b082d936cda946f.png 480w, https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/kg_hu_1db6d89eedb49e94.png 1024w"
+loading="lazy"
+alt="alt text"
+class="gallery-image"
+data-flex-grow="250"
+data-flex-basis="601px"
+&gt;&lt;/p&gt;
+&lt;h2 id="getting-started"&gt;Getting Started
+&lt;/h2&gt;&lt;h3 id="prerequisites"&gt;Prerequisites
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Docker &amp;amp; Docker Compose&lt;/li&gt;
+&lt;li&gt;Python 3.13+&lt;/li&gt;
+&lt;li&gt;Node.js 18+ (for frontend development)&lt;/li&gt;
+&lt;li&gt;UV package manager (for Python dependencies)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="installation--running"&gt;Installation &amp;amp; Running
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Clone the repository&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone &amp;lt;repository-url&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; KLTN
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Start all services with Docker Compose&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Access the application&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Frontend: http://localhost:3000&lt;/li&gt;
+&lt;li&gt;Neo4j Browser: http://localhost:17474&lt;/li&gt;
+&lt;li&gt;MinIO Console: http://localhost:9001&lt;/li&gt;
+&lt;li&gt;LiteLLM API: http://localhost:9510&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="development-setup"&gt;Development Setup
+&lt;/h3&gt;&lt;h4 id="backend-services"&gt;Backend Services
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;span class="lnt"&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Install UV package manager&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install uv
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Install dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv sync
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Run a specific service (example: RAG service)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; services/rag
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run python -m src.main
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="frontend"&gt;Frontend
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; frontend
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm install
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm run dev
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="supported-courses"&gt;Supported Courses
+&lt;/h2&gt;&lt;p&gt;The platform currently supports the following courses:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;int3405&lt;/strong&gt;: Introduction to Artificial Intelligence&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dsa2025&lt;/strong&gt;: Data Structures and Algorithms 2025&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;rl2025&lt;/strong&gt;: Reinforcement Learning 2025&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="features"&gt;Features
+&lt;/h2&gt;&lt;h3 id="mcq-generation"&gt;MCQ Generation
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Automated MCQ Creation&lt;/strong&gt;: Generate multiple choice questions from course materials&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Context-Aware Questions&lt;/strong&gt;: Leverage RAG to create questions based on specific topics and difficulty levels&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Knowledge Graph Enhanced&lt;/strong&gt;: Use graph relationships to generate questions testing concept connections&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Quality Control&lt;/strong&gt;: Validate questions for clarity, difficulty, and educational value&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customizable&lt;/strong&gt;: Control question difficulty, topic focus, and distractor quality&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="knowledge-graph-integration"&gt;Knowledge Graph Integration
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Automated extraction of concepts, relationships, and entities from course materials&lt;/li&gt;
+&lt;li&gt;Graph-based retrieval for contextually relevant question generation&lt;/li&gt;
+&lt;li&gt;Entity similarity analysis for creating meaningful distractors&lt;/li&gt;
+&lt;li&gt;Knowledge graph effectiveness evaluation for question quality&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="multi-model-support"&gt;Multi-Model Support
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Gemini 2.5 Flash&lt;/li&gt;
+&lt;li&gt;Azure OpenAI (GPT-4, GPT-4o-mini)&lt;/li&gt;
+&lt;li&gt;AWS Claude&lt;/li&gt;
+&lt;li&gt;Local models via Ollama&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="rag-pipeline-for-mcq-context"&gt;RAG Pipeline for MCQ Context
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Document chunking and embedding for course materials&lt;/li&gt;
+&lt;li&gt;Semantic search to identify relevant content for questions&lt;/li&gt;
+&lt;li&gt;Context extraction for question and answer generation&lt;/li&gt;
+&lt;li&gt;Knowledge graph enhanced retrieval for topic selection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="user-management"&gt;User Management
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Role-based access control (Teachers/Students)&lt;/li&gt;
+&lt;li&gt;Course enrollment and management&lt;/li&gt;
+&lt;li&gt;Authentication with JWT tokens&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="technologies"&gt;Technologies
+&lt;/h2&gt;&lt;h3 id="backend"&gt;Backend
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Python 3.13&lt;/strong&gt; with UV package manager&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FastAPI&lt;/strong&gt; for REST APIs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Neo4j&lt;/strong&gt; for knowledge graph storage&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PostgreSQL&lt;/strong&gt; for relational data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LiteLLM&lt;/strong&gt; for unified LLM interface&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="frontend-1"&gt;Frontend
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;React 18&lt;/strong&gt; with TypeScript&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vite&lt;/strong&gt; for build tooling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TailwindCSS&lt;/strong&gt; for styling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;React Query&lt;/strong&gt; for data fetching&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Zustand&lt;/strong&gt; for state management&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="infrastructure-1"&gt;Infrastructure
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Docker &amp;amp; Docker Compose&lt;/strong&gt; for containerization&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MinIO&lt;/strong&gt; for object storage&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Nginx&lt;/strong&gt; for serving frontend&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="evaluation--analysis"&gt;Evaluation &amp;amp; Analysis
+&lt;/h2&gt;&lt;p&gt;The &lt;code&gt;archive/&lt;/code&gt; directory contains research and evaluation scripts for MCQ quality assessment:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;analyze_kg_effectiveness.py&lt;/code&gt;: Knowledge graph impact on question quality&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;kg_evaluation.py&lt;/code&gt;: Quantitative KG metrics for MCQ generation&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;entities_similarity.ipynb&lt;/code&gt;: Entity similarity computation for distractor creation&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;qa_topic_comparison.py&lt;/code&gt;: MCQ topic coverage analysis&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;baseline.ipynb&lt;/code&gt;: Comparison with baseline MCQ generation methods&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;MCQ generation results are stored in &lt;code&gt;outputs/&lt;/code&gt; organized by model and course.&lt;/p&gt;
+&lt;h2 id="api-documentation"&gt;API Documentation
+&lt;/h2&gt;&lt;p&gt;Once services are running, API documentation is available at:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Auth Service: http://localhost:3001/docs&lt;/li&gt;
+&lt;li&gt;Generation Service: http://localhost:3005/docs&lt;/li&gt;
+&lt;li&gt;RAG Service: http://localhost:3011/docs&lt;/li&gt;
+&lt;li&gt;Indexing Service: http://localhost:3006/docs&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Flowers Colorization using Denoising Diffusion Probabilistic Models</title><link>https://vuniem131104.github.io/my-portfolio/p/flowers-colorization/</link><pubDate>Tue, 29 Apr 2025 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/flowers-colorization/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/flowers-colorization/cover.jpg" alt="Featured image of post Flowers Colorization using Denoising Diffusion Probabilistic Models" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; &lt;a class="link" href="https://github.com/vuniem131104/Flowers-Colorization-Using-DDPM" target="_blank" rel="noopener"
+&gt;Flowers-Colorization&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="flowers-colorization-using-ddpm"&gt;Flowers-Colorization using DDPM
+&lt;/h1&gt;&lt;p&gt;This project applies &lt;strong&gt;Denoising Diffusion Probabilistic Models (DDPM)&lt;/strong&gt; to the task of &lt;strong&gt;automatic colorization&lt;/strong&gt; of flower images with MLOps Pipeline.&lt;br&gt;
+By learning a diffusion-based generative process, the model can transform grayscale (black-and-white) flower images into realistic and vivid colorized versions.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="project-overview"&gt;Project Overview
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Goal&lt;/strong&gt;:&lt;br&gt;
+To develop a model that takes a grayscale image of a flower and generates a realistic colorized image.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Approach&lt;/strong&gt;:&lt;br&gt;
+We employ a &lt;strong&gt;DDPM&lt;/strong&gt; architecture that learns to reverse a gradual noising process, starting from a noise distribution to generate a colorful, detailed image conditioned on the input grayscale image.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Dataset&lt;/strong&gt;:&lt;br&gt;
+We use a dataset of flower images on kaggle (&lt;a class="link" href="https://www.kaggle.com/datasets/imsparsh/flowers-dataset%29" target="_blank" rel="noopener"
+&gt;https://www.kaggle.com/datasets/imsparsh/flowers-dataset)&lt;/a&gt;, preprocessing it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="project-structure"&gt;Project Structure
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Flowers-Colorization/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── .github/ &lt;span class="c1"&gt;# Github action&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── config/ &lt;span class="c1"&gt;# Config for MLOps pipeline&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── src/ &lt;span class="c1"&gt;# All the souce code&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── requirements.txt &lt;span class="c1"&gt;# Python dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── README.md &lt;span class="c1"&gt;# Project description (you are here!)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="model-details"&gt;Model Details
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Backbone&lt;/strong&gt;:&lt;br&gt;
+A &lt;strong&gt;U-Net&lt;/strong&gt; model is used for the noise prediction network within the DDPM framework.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Conditioning&lt;/strong&gt;:&lt;br&gt;
+The model conditions on grayscale images during both training and sampling.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Training Objective&lt;/strong&gt;:&lt;br&gt;
+Minimize the mean squared error (MSE) between the predicted noise and the true noise at different timesteps.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="quick-start"&gt;Quick Start
+&lt;/h2&gt;&lt;h3 id="1-install-dependencies"&gt;1. Install Dependencies
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install -r requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;You can modify the data path in &lt;code&gt;config.py&lt;/code&gt; accordingly.&lt;/p&gt;
+&lt;h3 id="2-run-full-pipeline"&gt;2. Run Full Pipeline
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python main.py
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Training progress (losses, sample generations) will be logged for monitoring.&lt;/p&gt;
+&lt;h3 id="3-generate-colorized-flowers"&gt;3. Generate Colorized Flowers
+&lt;/h3&gt;&lt;p&gt;After training:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python -m src.utils.inference
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;This will produce colorized versions of the grayscale flower images.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="main-features"&gt;Main Features
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Flexible&lt;/strong&gt;: Easily adapt to different flower datasets or resolution sizes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configurable&lt;/strong&gt;: Hyperparameters like noise schedule, number of diffusion steps, learning rate, batch size are adjustable via &lt;code&gt;config.py&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Visualization&lt;/strong&gt;: Intermediate colorizations during sampling are saved for analysis.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="results"&gt;Results
+&lt;/h2&gt;&lt;p&gt;Sample colorized outputs:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: center"&gt;Grayscale Input&lt;/th&gt;
+&lt;th style="text-align: center"&gt;Colorized Output&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center"&gt;&lt;img src="https://github.com/user-attachments/assets/84f596f2-2973-44a6-a8b8-be21fab2b8e2"
+loading="lazy"
+alt="0_gray"
+&gt;&lt;/td&gt;
+&lt;td style="text-align: center"&gt;&lt;img src="https://github.com/user-attachments/assets/df1bf19a-446f-4be1-a80f-0b040e1f7f71"
+loading="lazy"
+alt="2488902131_3417698611_n"
+&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center"&gt;&lt;img src="https://github.com/user-attachments/assets/0a6241c4-afed-41cc-ab61-409f637cc0c8"
+loading="lazy"
+alt="1_gray"
+&gt;&lt;/td&gt;
+&lt;td style="text-align: center"&gt;&lt;img src="https://github.com/user-attachments/assets/25edbf1c-b19e-4fa2-bb26-bdf5b1517910"
+loading="lazy"
+alt="2498632196_e47a472d5a"
+&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="requirements"&gt;Requirements
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Python &amp;gt;= 3.8&lt;/li&gt;
+&lt;li&gt;PyTorch &amp;gt;= 1.10&lt;/li&gt;
+&lt;li&gt;torchvision&lt;/li&gt;
+&lt;li&gt;numpy&lt;/li&gt;
+&lt;li&gt;tqdm&lt;/li&gt;
+&lt;li&gt;matplotlib&lt;/li&gt;
+&lt;li&gt;(optional) wandb or tensorboard for experiment tracking&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See &lt;code&gt;requirements.txt&lt;/code&gt; for full details.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="references"&gt;References
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;DDPM Paper&lt;/strong&gt;: &lt;a class="link" href="https://arxiv.org/abs/2006.11239" target="_blank" rel="noopener"
+&gt;Denoising Diffusion Probabilistic Models (Ho et al., 2020)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;U-Net Paper&lt;/strong&gt;: &lt;a class="link" href="https://arxiv.org/abs/1505.04597" target="_blank" rel="noopener"
+&gt;U-Net: Convolutional Networks for Biomedical Image Segmentation (Ronneberger et al., 2015)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;</description></item><item><title>Resume Evaluation System</title><link>https://vuniem131104.github.io/my-portfolio/p/resume-evaluation/</link><pubDate>Tue, 01 Apr 2025 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/resume-evaluation/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/resume-evaluation/cover.jpg" alt="Featured image of post Resume Evaluation System" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; &lt;a class="link" href="https://github.com/vuniem131104/Resume-Evaluation-Based-On-LLMs" target="_blank" rel="noopener"
+&gt;Resume-Evaluation-Based-On-LLMs&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="resume-evaluation-based-on-llms"&gt;Resume-Evaluation-Based-On-LLMs
+&lt;/h1&gt;&lt;p&gt;A smart, asynchronous resume evaluation system powered by LLMs, Redis, and FastAPI. This system allows users to upload resumes, job descriptions and receive both general and personalized feedback through automated evaluation and virtual interviews.&lt;/p&gt;
+&lt;h2 id="user-interface"&gt;User Interface
+&lt;/h2&gt;&lt;h3 id="1-main"&gt;1. Main
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Users upload their resumes and job descriptions here&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/0b1e9e1e-e6a6-4818-a79e-2cdbb703afba"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Then, click &amp;ldquo;Evaluate Resume&amp;rdquo; button and receive result&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/4996f95e-de08-49dc-abb3-eba989a68594"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Virtual Interview&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/63032caa-3301-4016-9360-552b84a5f174"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Jobs recommedation based on users&amp;rsquo; history&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/7517e05d-b04f-432c-b535-d947c41281f1"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Users&amp;rsquo; evaluation history&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/f9f2f28b-3a8e-414a-afca-e0c8f97feeb0"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;h2 id="-tech-stack"&gt;🔧 Tech Stack
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;FastAPI&lt;/strong&gt; – API server&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Redis&lt;/strong&gt; – Message queue and temporary result store&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Redis Queue&lt;/strong&gt; – Asynchronous task handling (e.g., resume evaluation)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Llama 4&lt;/strong&gt; – Used for text extraction, job/resume standardization and evaluate content and layout of the resume. Also, it will serve as a virtual recruiter and give personalized feedback&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OpenAI Whisper&lt;/strong&gt; – Voice recognition for virtual interviews&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tavily + Web Search Agent&lt;/strong&gt; – Recent job recommendations&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MongoDB&lt;/strong&gt; – User history and job storage, user database&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AWS S3&lt;/strong&gt; – Store resumes files uploaded by users&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="system-architecture"&gt;System Architecture
+&lt;/h2&gt;&lt;h3 id="1-resume-evaluation-flow"&gt;1. Resume Evaluation Flow
+&lt;/h3&gt;&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/40f75ec5-7624-4539-9e13-4c62e0013cea"
+loading="lazy"
+alt="pipeline"
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Step 1&lt;/strong&gt;: Users upload their &lt;strong&gt;resume&lt;/strong&gt; and provide the &lt;strong&gt;job description&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 2&lt;/strong&gt;: The system asynchronously extracts and standardizes text from both the resume and the job description using LLMs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 3&lt;/strong&gt;: The evaluation task is queued via Redis and executed by workers. Once complete, the user receives a &lt;strong&gt;non-personalized feedback&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Optional&lt;/strong&gt;: If the user wants more personalized insights, they proceed to a virtual interview.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2-virtual-interview-and-personalized-feedback"&gt;2. Virtual Interview and Personalized Feedback
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Step 4&lt;/strong&gt;: The LLM generates interview questions based on the job description.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 5&lt;/strong&gt;: The user replies via text or voice (processed by Whisper).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 6&lt;/strong&gt;: The conversation is passed to Qwen 2.5, which generates &lt;strong&gt;personalized feedback&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Final&lt;/strong&gt;: Feedback is returned to the user.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="3-job-recommendation-via-web-search-agent"&gt;3. Job Recommendation via Web Search Agent
+&lt;/h3&gt;&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/9aefbf82-5c81-4066-b693-af843b57aaf4"
+loading="lazy"
+alt="agent"
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Input&lt;/strong&gt;: User submits a request to find relevant jobs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Process&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Job preferences are fetched from &lt;strong&gt;MongoDB&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Tavily-powered &lt;strong&gt;Web Search Agent&lt;/strong&gt; fetches the latest related job postings.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Output&lt;/strong&gt;: Returned to the user.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="how-it-works-key-points"&gt;How It Works (Key Points)
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Uses &lt;strong&gt;Redis&lt;/strong&gt; to enqueue/dequeue long-running tasks like resume evaluation.&lt;/li&gt;
+&lt;li&gt;Separation between &lt;strong&gt;upload&lt;/strong&gt; and &lt;strong&gt;evaluation&lt;/strong&gt; actions to allow flexibility for users.&lt;/li&gt;
+&lt;li&gt;Fully &lt;strong&gt;asynchronous&lt;/strong&gt;, scalable design with pluggable LLMs.&lt;/li&gt;
+&lt;li&gt;Feedback available in 2 modes: quick general or in-depth personalized.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="how-to-run-locally"&gt;How to Run Locally
+&lt;/h2&gt;&lt;h3 id="1-clone-repo"&gt;1. Clone Repo
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 1. Clone the repo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone https://github.com/vuniem131104/Resume-Evaluation-Based-On-LLMs.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; Resume-Evaluation-Based-On-LLMs/app
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 2. Set up virtual environment and install dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python -m venv venv
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;source&lt;/span&gt; venv/bin/activate
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install -r requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. Start Redis server&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;redis-server
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 4. Create .env file similar to .env.example in this repo then put it into folder app/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 5. Run the FastAPI app&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python main.py
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 6. In another terminal, start the workers&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python resume_evaluation_worker.py &lt;span class="c1"&gt;# for resume evaluation worker&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python related_jobs_worker.py &lt;span class="c1"&gt;# for related jobs retrieval worker&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="2-docker"&gt;2. Docker
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Make sure that you have installed docker and docker-compose in your local machine :)))&lt;/li&gt;
+&lt;li&gt;Your folder structur will look like this:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;resume-application/&lt;/p&gt;
+&lt;p&gt;├── uploads/ &lt;br&gt;
+├── .env &lt;br&gt;
+└── docker-compose.yml&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 1. Create a folder in your local machine&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mkdir resume-application &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; resume-application
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mkdir uploads
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 2. Copy docker-compose-user.yml in this repo into the folder&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. Create .env file similar to .env.example in this repo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 4. Run Application&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="future-improvements"&gt;Future Improvements
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Add OAuth2 login for real users&lt;/li&gt;
+&lt;li&gt;Enable file storage via S3 or MinIO&lt;/li&gt;
+&lt;li&gt;Add analytics dashboard for job fit trends&lt;/li&gt;
+&lt;li&gt;Implement feedback history per user&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Image Super-Resolution</title><link>https://vuniem131104.github.io/my-portfolio/p/image-super-resolution/</link><pubDate>Sat, 01 Feb 2025 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/image-super-resolution/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/image-super-resolution/cover.jpg" alt="Featured image of post Image Super-Resolution" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; &lt;a class="link" href="https://github.com/vuniem131104/Super-Resolution-With-Pytorch" target="_blank" rel="noopener"
+&gt;Super-Resolution-With-Pytorch&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="overview"&gt;Overview
+&lt;/h1&gt;&lt;p&gt;This repo is the implementation of SRRESNET and SRGAN in super resolution task for blurry images&lt;/p&gt;
+&lt;h2 id="srresnet-architecture"&gt;SRRESNET ARCHITECTURE
+&lt;/h2&gt;&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/fead4ca9-4071-4ef5-a95b-da99f52366f2"
+loading="lazy"
+alt="image"
+&gt;
+The SRResNet is composed of the following operations –&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First, the low resolution image is convolved with a large kernel size 9x9 and a stride of 1, producing a feature map at the same resolution but with
+64 channels. A parametric ReLU (PReLU) activation is applied.&lt;/li&gt;
+&lt;li&gt;This feature map is passed through 16 residual blocks, each consisting of a convolution with a 3x3 kernel and a stride of 1, batch normalization and PReLU activation, another but similar convolution, and a second batch normalization. The resolution and number of channels are maintained in each convolutional layer.&lt;/li&gt;
+&lt;li&gt;The result from the series of residual blocks is passed through a convolutional layer with a 3x3 kernel and a stride of 1, and batch normalized. The resolution and number of channels are maintained. In addition to the skip connections in each residual block (by definition), there is a larger skip connection arching across all residual blocks and this convolutional layer.&lt;/li&gt;
+&lt;li&gt;2 subpixel convolution blocks, each upscaling dimensions by a factor of 2 (followed by PReLU activation), produce a net 4x upscaling. The number of channels is maintained.&lt;/li&gt;
+&lt;li&gt;Finally, a convolution with a large kernel size 9x9 and a stride of 1 is applied at this higher resolution, and the result is Tanh-activated to produce the super-resolved image with RGB channels in the range [-1, 1].&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="the-srresnet-update"&gt;The SRResNet Update
+&lt;/h3&gt;&lt;p&gt;Training the SRResNet, like any network, is composed of a series of updates to its parameters. What might constitute such an update?&lt;/p&gt;
+&lt;p&gt;Our training data will consist of high-resolution (gold) images, and their low-resolution counterparts which we create by 4x-downsampling them using bicubic interpolation.&lt;/p&gt;
+&lt;p&gt;In the forward pass, the SRResNet produces a &lt;strong&gt;super-resolved image at 4x the dimensions of the low-resolution image&lt;/strong&gt; that was provided to it.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/20a2baa9-1532-4a23-9522-ea36ee35f685"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;p&gt;We use the &lt;strong&gt;Mean-Squared Error (MSE) as the loss function&lt;/strong&gt; to compare the super-resolved image with this original, gold high-resolution image that was used to create the low-resolution image.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/5ac9201c-b9bb-4621-ac4c-75183bc41ebb"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;p&gt;Choosing to minimize the MSE between the super-resolved and gold images means we will change the parameters of the SRResNet in a way that, if given the low-resolution image again, it will &lt;strong&gt;create a super-resolved image that is closer in appearance to the original high-resolution version&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The MSE loss is a type of &lt;strong&gt;&lt;em&gt;content&lt;/em&gt; loss&lt;/strong&gt;, because it is based purely on the contents of the predicted and target images.&lt;/p&gt;
+&lt;p&gt;In this specific case, we are considering their contents in the &lt;em&gt;&lt;strong&gt;RGB space&lt;/strong&gt;&lt;/em&gt; – we will discuss the significance of this soon.&lt;/p&gt;
+&lt;h2 id="srgan-architecture"&gt;SRGAN ARCHITECTURE
+&lt;/h2&gt;&lt;p&gt;It consists of a &lt;em&gt;Generator&lt;/em&gt; and a &lt;strong&gt;Discriminator&lt;/strong&gt; as other conventional GANS&lt;/p&gt;
+&lt;h3 id="generator"&gt;GENERATOR
+&lt;/h3&gt;&lt;p&gt;It will be the same as the &lt;strong&gt;SRRESNET&lt;/strong&gt;, and we will take the pretrained &lt;strong&gt;SRRESNET&lt;/strong&gt; to initialize for the &lt;strong&gt;GENERATOR&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id="discriminator"&gt;DISCRIMINATOR
+&lt;/h3&gt;&lt;p&gt;As you might expect, the Discriminator is a convolutional network that functions as a &lt;strong&gt;binary image classifier&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/3ca77488-9508-40a8-a10d-a8a7d3d8769e"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;p&gt;It is composed of the following operations –&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The high-resolution image (of natural or artificial origin) is convolved with a large kernel size $9\times9$ and a stride of $1$, producing a feature map at the same resolution but with $64$ channels. A leaky &lt;em&gt;ReLU&lt;/em&gt; activation is applied.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This feature map is passed through $7$ &lt;strong&gt;convolutional blocks&lt;/strong&gt;, each consisting of a convolution with a $3\times3$ kernel, batch normalization, and leaky &lt;em&gt;ReLU&lt;/em&gt; activation. The number of channels is doubled in even-indexed blocks. Feature map dimensions are halved in odd-indexed blocks using a stride of $2$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The result from this series of convolutional blocks is flattened and linearly transformed into a vector of size $1024$, followed by leaky &lt;em&gt;ReLU&lt;/em&gt; activation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A final linear transformation yields a single logit, which can be converted into a probability score using the &lt;em&gt;Sigmoid&lt;/em&gt; activation function. This indicates the &lt;strong&gt;probability of the original input being a natural (gold) image&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="generator-update"&gt;GENERATOR UPDATE
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;We will update the generator by using pretrained VGG19 model from torchvision. We no longer compare the orginial high resolution images with super resolution images but we compare their outputs after forward them through &lt;strong&gt;the truncated VGGV19&lt;/strong&gt;. \&lt;/li&gt;
+&lt;li&gt;Moreover, we utilize the advantage of an adversirial loss by using BCEWithLogitsLoss in pytorch to compare super resolution images passing through the discriminator and it &lt;strong&gt;untrue label (1)&lt;/strong&gt;.
+&lt;img src="https://github.com/user-attachments/assets/42df0edf-6c99-4439-b211-8d6f5aa74f52"
+loading="lazy"
+alt="image"
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="discriminator-update"&gt;DISCRIMINATOR UPDATE
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;It is very straightforward because it just distinguish between high resolution images with real labels (1) and super resolution images with it real labels (0).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="training-models"&gt;TRAINING MODELS
+&lt;/h2&gt;&lt;p&gt;Our models are trained on COCO2024 dataset. If you want to train on your dataset, please do the following steps:&lt;/p&gt;
+&lt;h3 id="train-srresnet"&gt;Train SRRESNET
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 train_srresnet.py --data_folder &amp;lt;your data directory&amp;gt; --batch_size &amp;lt;your batch size&amp;gt; --epochs &amp;lt;epochs to train models&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="train-srgan"&gt;Train SRGAN
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 train_srgan.py --data_folder &amp;lt;your data directory&amp;gt; --batch_size &amp;lt;your batch size&amp;gt; --epochs &amp;lt;epochs to train models&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="testing-models"&gt;TESTING MODELS
+&lt;/h2&gt;&lt;h3 id="test-srresnet-with-images"&gt;Test SRRESNET with images
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 test_srresnet.py --image_path &amp;lt;path to your image&amp;gt; --srresnet_ckpt &amp;lt;your srresnet checkpoint&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="test-srgan-with-images"&gt;Test SRGAN with images
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python3 test_srgan.py --image_path &amp;lt;path to your image&amp;gt; --srgan_ckpt &amp;lt;your srgan checkpoint&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="result"&gt;RESULT
+&lt;/h2&gt;&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/bf2d44de-d458-4281-81cc-1654c4c559db"
+loading="lazy"
+alt="flowers"
+&gt;
+&lt;img src="https://github.com/user-attachments/assets/b17e1c5e-4e8c-44cc-9f6a-9963e72cfb1c"
+loading="lazy"
+alt="man"
+&gt;&lt;/p&gt;</description></item><item><title>License Plate Recognition</title><link>https://vuniem131104.github.io/my-portfolio/p/license-plate-recognition/</link><pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/license-plate-recognition/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/license-plate-recognition/cover.jpg" alt="Featured image of post License Plate Recognition" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; &lt;a class="link" href="https://github.com/vuniem131104/License-Plate-Recognition" target="_blank" rel="noopener"
+&gt;License-Plate-Recognition&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="summary"&gt;Summary
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Use openCV and easyOCR to read text from license plate in a car detected by YOLO&lt;/li&gt;
+&lt;li&gt;Train YOLO on a custom dataset to create model that can detect license plate easily (get the data &lt;a class="link" href="https://universe.roboflow.com/roboflow-universe-projects/license-plate-recognition-rxg4e/dataset/4" target="_blank" rel="noopener"
+&gt;here&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;The video I used in this project can be downloaded &lt;a class="link" href="https://drive.google.com/file/d/12sBfgLICdQEnDSOkVFZiJuUE6d3BeanT/view?usp=sharing" target="_blank" rel="noopener"
+&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;You can see the result below:
+&lt;img src="https://github.com/vuniem131104/License-Plate-Recognition/assets/124224840/72b98f4c-36e7-4e06-ac28-cf60ff25c676"
+loading="lazy"
+alt="Screenshot from 2024-03-01 17-48-36"
+&gt;
+&lt;img src="https://github.com/vuniem131104/License-Plate-Recognition/assets/124224840/70a337d1-99cf-4cc2-a3b6-91f2b5c19c34"
+loading="lazy"
+alt="Screenshot from 2024-03-01 17-48-15"
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="steps-you-should-follow-if-you-want-to-do-the-same"&gt;Steps you should follow if you want to do the same:
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Clone this repo into your local computer and open it in your IDE&lt;/li&gt;
+&lt;li&gt;Download the license plate detector model &lt;a class="link" href="https://drive.google.com/file/d/114gq0wJI5yPzBKDUEPR1NMbeaqqpEdVl/view?usp=sharing" target="_blank" rel="noopener"
+&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Clone &lt;a class="link" href="https://github.com/abewley/sort" target="_blank" rel="noopener"
+&gt;this repo&lt;/a&gt; and put it into the folder you have cloned&lt;/li&gt;
+&lt;li&gt;Execute main.py to create output.csv, then add_missing_data to generate test_interpolated.csv&lt;/li&gt;
+&lt;li&gt;To have a csv file named out2.csv, you should sort test_interpolated.csv by &amp;ldquo;frame_nmr&amp;rdquo; column and save in your local.&lt;/li&gt;
+&lt;li&gt;Last, you run visualize.py to see the results.&lt;/li&gt;
+&lt;li&gt;Good Luck!&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

@@ -1,0 +1,2340 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>LLM on Le Hoang Vu</title><link>https://vuniem131104.github.io/my-portfolio/tags/llm/</link><description>Recent content in LLM on Le Hoang Vu</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://vuniem131104.github.io/my-portfolio/tags/llm/index.xml" rel="self" type="application/rss+xml"/><item><title>Multiple Choice Question Generation using LLMs and Knowledge Graphs</title><link>https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/</link><pubDate>Mon, 15 Dec 2025 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/cover.jpg" alt="Featured image of post Multiple Choice Question Generation using LLMs and Knowledge Graphs" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; &lt;a class="link" href="https://github.com/vuniem131104/Multiple-Choice-Question-Generation-With-LLMs-and-KG" target="_blank" rel="noopener"
+&gt;Multiple-Choice-Question-Generation&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="ai-powered-multiple-choice-question-mcq-generation-platform"&gt;AI-Powered Multiple Choice Question (MCQ) Generation Platform
+&lt;/h1&gt;&lt;p&gt;An intelligent educational platform for automated Multiple Choice Question (MCQ) generation using Retrieval-Augmented Generation (RAG) and Knowledge Graph technologies. The system leverages course materials to generate contextually relevant, high-quality MCQs for assessment and practice. Built with support for multiple AI models through LiteLLM and Neo4j knowledge graph for enhanced question generation.&lt;/p&gt;
+&lt;h2 id="architecture"&gt;Architecture
+&lt;/h2&gt;&lt;p&gt;This is a microservices-based application with the following components:&lt;/p&gt;
+&lt;h3 id="services"&gt;Services
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Auth Service&lt;/strong&gt; (&lt;code&gt;port 3001&lt;/code&gt;): User authentication and authorization&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Generation Service&lt;/strong&gt; (&lt;code&gt;port 3005&lt;/code&gt;): MCQ generation using LLM models with RAG&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RAG Service&lt;/strong&gt; (&lt;code&gt;port 3011&lt;/code&gt;): Retrieval-Augmented Generation for context extraction&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Indexing Service&lt;/strong&gt; (&lt;code&gt;port 3006&lt;/code&gt;): Document processing and knowledge graph indexing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Frontend&lt;/strong&gt; (&lt;code&gt;port 3000&lt;/code&gt;): React-based web interface for MCQ management&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="infrastructure"&gt;Infrastructure
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;LiteLLM&lt;/strong&gt; (&lt;code&gt;port 9510&lt;/code&gt;): Unified interface for multiple LLM providers (Gemini, Azure OpenAI, AWS Claude)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Neo4j&lt;/strong&gt; (&lt;code&gt;port 17474/17687&lt;/code&gt;): Graph database for knowledge representation&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PostgreSQL&lt;/strong&gt; (&lt;code&gt;port 15432&lt;/code&gt;): Relational database for user and course data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MinIO&lt;/strong&gt; (&lt;code&gt;port 9000/9001&lt;/code&gt;): Object storage for documents and media&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ollama&lt;/strong&gt; (&lt;code&gt;port 11434&lt;/code&gt;): Local LLM hosting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="multiple-choice-question-generation-pipeline"&gt;Multiple-Choice Question Generation Pipeline
+&lt;/h3&gt;&lt;p&gt;This pipeline involves several steps to generate high-quality MCQs as shown below:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/mcq.png"
+width="1149"
+height="733"
+srcset="https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/mcq_hu_e9b7c7f2b5951242.png 480w, https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/mcq_hu_d313a3824077dcbf.png 1024w"
+loading="lazy"
+alt="alt text"
+class="gallery-image"
+data-flex-grow="156"
+data-flex-basis="376px"
+&gt;&lt;/p&gt;
+&lt;h2 id="project-structure"&gt;Project Structure
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;KLTN/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── services/ # Microservices
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── auth/ # Authentication service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── generation/ # MCQ generation service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── indexing/ # Document indexing service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── rag/ # RAG context retrieval service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── frontend/ # React frontend application
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── libs/ # Shared libraries
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── base/ # Base utilities
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── graph_db/ # Neo4j integration
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── lite_llm/ # LiteLLM wrapper
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── logger/ # Logging utilities
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── postgres_db/ # PostgreSQL integration
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── storage/ # MinIO storage utilities
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── docker/ # Dockerfiles for services
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── database/ # Database initialization scripts
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── outputs/ # Analysis outputs and results
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── archive/ # Research and evaluation scripts
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── config.yaml # LiteLLM configuration
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── docker-compose.yml # Docker orchestration
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="constructed-knowledge-graph"&gt;Constructed Knowledge Graph
+&lt;/h2&gt;&lt;p&gt;The knowledge graph is built from course materials, capturing concepts, relationships, and entities. It enables context-aware MCQ generation by providing structured information for question formulation.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/kg.png"
+width="1030"
+height="411"
+srcset="https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/kg_hu_9b082d936cda946f.png 480w, https://vuniem131104.github.io/my-portfolio/p/multiple-choice-question-generation/kg_hu_1db6d89eedb49e94.png 1024w"
+loading="lazy"
+alt="alt text"
+class="gallery-image"
+data-flex-grow="250"
+data-flex-basis="601px"
+&gt;&lt;/p&gt;
+&lt;h2 id="getting-started"&gt;Getting Started
+&lt;/h2&gt;&lt;h3 id="prerequisites"&gt;Prerequisites
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Docker &amp;amp; Docker Compose&lt;/li&gt;
+&lt;li&gt;Python 3.13+&lt;/li&gt;
+&lt;li&gt;Node.js 18+ (for frontend development)&lt;/li&gt;
+&lt;li&gt;UV package manager (for Python dependencies)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="installation--running"&gt;Installation &amp;amp; Running
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Clone the repository&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone &amp;lt;repository-url&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; KLTN
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Start all services with Docker Compose&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Access the application&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Frontend: http://localhost:3000&lt;/li&gt;
+&lt;li&gt;Neo4j Browser: http://localhost:17474&lt;/li&gt;
+&lt;li&gt;MinIO Console: http://localhost:9001&lt;/li&gt;
+&lt;li&gt;LiteLLM API: http://localhost:9510&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="development-setup"&gt;Development Setup
+&lt;/h3&gt;&lt;h4 id="backend-services"&gt;Backend Services
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;span class="lnt"&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Install UV package manager&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install uv
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Install dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv sync
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Run a specific service (example: RAG service)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; services/rag
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run python -m src.main
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="frontend"&gt;Frontend
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; frontend
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm install
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm run dev
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="supported-courses"&gt;Supported Courses
+&lt;/h2&gt;&lt;p&gt;The platform currently supports the following courses:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;int3405&lt;/strong&gt;: Introduction to Artificial Intelligence&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dsa2025&lt;/strong&gt;: Data Structures and Algorithms 2025&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;rl2025&lt;/strong&gt;: Reinforcement Learning 2025&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="features"&gt;Features
+&lt;/h2&gt;&lt;h3 id="mcq-generation"&gt;MCQ Generation
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Automated MCQ Creation&lt;/strong&gt;: Generate multiple choice questions from course materials&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Context-Aware Questions&lt;/strong&gt;: Leverage RAG to create questions based on specific topics and difficulty levels&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Knowledge Graph Enhanced&lt;/strong&gt;: Use graph relationships to generate questions testing concept connections&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Quality Control&lt;/strong&gt;: Validate questions for clarity, difficulty, and educational value&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customizable&lt;/strong&gt;: Control question difficulty, topic focus, and distractor quality&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="knowledge-graph-integration"&gt;Knowledge Graph Integration
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Automated extraction of concepts, relationships, and entities from course materials&lt;/li&gt;
+&lt;li&gt;Graph-based retrieval for contextually relevant question generation&lt;/li&gt;
+&lt;li&gt;Entity similarity analysis for creating meaningful distractors&lt;/li&gt;
+&lt;li&gt;Knowledge graph effectiveness evaluation for question quality&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="multi-model-support"&gt;Multi-Model Support
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Gemini 2.5 Flash&lt;/li&gt;
+&lt;li&gt;Azure OpenAI (GPT-4, GPT-4o-mini)&lt;/li&gt;
+&lt;li&gt;AWS Claude&lt;/li&gt;
+&lt;li&gt;Local models via Ollama&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="rag-pipeline-for-mcq-context"&gt;RAG Pipeline for MCQ Context
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Document chunking and embedding for course materials&lt;/li&gt;
+&lt;li&gt;Semantic search to identify relevant content for questions&lt;/li&gt;
+&lt;li&gt;Context extraction for question and answer generation&lt;/li&gt;
+&lt;li&gt;Knowledge graph enhanced retrieval for topic selection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="user-management"&gt;User Management
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Role-based access control (Teachers/Students)&lt;/li&gt;
+&lt;li&gt;Course enrollment and management&lt;/li&gt;
+&lt;li&gt;Authentication with JWT tokens&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="technologies"&gt;Technologies
+&lt;/h2&gt;&lt;h3 id="backend"&gt;Backend
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Python 3.13&lt;/strong&gt; with UV package manager&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FastAPI&lt;/strong&gt; for REST APIs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Neo4j&lt;/strong&gt; for knowledge graph storage&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PostgreSQL&lt;/strong&gt; for relational data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LiteLLM&lt;/strong&gt; for unified LLM interface&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="frontend-1"&gt;Frontend
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;React 18&lt;/strong&gt; with TypeScript&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vite&lt;/strong&gt; for build tooling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TailwindCSS&lt;/strong&gt; for styling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;React Query&lt;/strong&gt; for data fetching&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Zustand&lt;/strong&gt; for state management&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="infrastructure-1"&gt;Infrastructure
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Docker &amp;amp; Docker Compose&lt;/strong&gt; for containerization&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MinIO&lt;/strong&gt; for object storage&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Nginx&lt;/strong&gt; for serving frontend&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="evaluation--analysis"&gt;Evaluation &amp;amp; Analysis
+&lt;/h2&gt;&lt;p&gt;The &lt;code&gt;archive/&lt;/code&gt; directory contains research and evaluation scripts for MCQ quality assessment:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;analyze_kg_effectiveness.py&lt;/code&gt;: Knowledge graph impact on question quality&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;kg_evaluation.py&lt;/code&gt;: Quantitative KG metrics for MCQ generation&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;entities_similarity.ipynb&lt;/code&gt;: Entity similarity computation for distractor creation&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;qa_topic_comparison.py&lt;/code&gt;: MCQ topic coverage analysis&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;baseline.ipynb&lt;/code&gt;: Comparison with baseline MCQ generation methods&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;MCQ generation results are stored in &lt;code&gt;outputs/&lt;/code&gt; organized by model and course.&lt;/p&gt;
+&lt;h2 id="api-documentation"&gt;API Documentation
+&lt;/h2&gt;&lt;p&gt;Once services are running, API documentation is available at:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Auth Service: http://localhost:3001/docs&lt;/li&gt;
+&lt;li&gt;Generation Service: http://localhost:3005/docs&lt;/li&gt;
+&lt;li&gt;RAG Service: http://localhost:3011/docs&lt;/li&gt;
+&lt;li&gt;Indexing Service: http://localhost:3006/docs&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Chatbot Recommendation System</title><link>https://vuniem131104.github.io/my-portfolio/p/recommendation-system/</link><pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/recommendation-system/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/recommendation-system/cover.jpg" alt="Featured image of post Chatbot Recommendation System" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; Private&lt;/p&gt;
+&lt;h1 id="graph-based-recommendation-system"&gt;Graph-Based Recommendation System
+&lt;/h1&gt;&lt;div align="center"&gt;
+&lt;p&gt;&lt;img src="https://img.shields.io/badge/version-4.1.0-blue.svg"
+loading="lazy"
+alt="Version"
+&gt;
+&lt;img src="https://img.shields.io/badge/python-3.11&amp;#43;-green.svg"
+loading="lazy"
+alt="Python"
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Intelligent Chatbot Recommendation System powered by Graph Retrieval&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;An enterprise-grade recommendation system that leverages graph databases, semantic search, and conversational AI to provide context-aware product recommendations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="table-of-contents"&gt;Table of Contents
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="#-overview" &gt;Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-how-it-works" &gt;How It Works&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-architecture" &gt;Architecture&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-key-technologies" &gt;Key Technologies&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-recommendation-flow" &gt;Recommendation Flow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-features" &gt;Features&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview
+&lt;/h2&gt;&lt;p&gt;The &lt;strong&gt;Sun Assistant Recommendation System&lt;/strong&gt; is designed to provide intelligent product recommendations through natural language conversations. By combining &lt;strong&gt;Graph Retrieval&lt;/strong&gt;, &lt;strong&gt;Semantic Search&lt;/strong&gt;, and &lt;strong&gt;Conversational AI&lt;/strong&gt;, the system delivers accurate, context-aware recommendations that understand user intent and product relationships.&lt;/p&gt;
+&lt;h3 id="core-capabilities"&gt;Core Capabilities
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Hybrid Search&lt;/strong&gt; - Combines BM25 keyword matching with semantic embedding scores&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph Retrieval&lt;/strong&gt; - Leverages Neo4j to discover product relationships and connections&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Conversational Interface&lt;/strong&gt; - Natural language interaction through chatbot&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent Ranking&lt;/strong&gt; - Multi-factor scoring including relevance, popularity, and context&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Context Awareness&lt;/strong&gt; - Maintains conversation history for better recommendations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="how-it-works"&gt;How It Works
+&lt;/h2&gt;&lt;p&gt;The recommendation system follows a sophisticated multi-stage pipeline:&lt;/p&gt;
+&lt;h3 id="1-query-understanding"&gt;1. &lt;strong&gt;Query Understanding&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;The chatbot processes user queries using LLM (Large Language Models) to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Extract user intent and preferences&lt;/li&gt;
+&lt;li&gt;Identify key entities and attributes&lt;/li&gt;
+&lt;li&gt;Decompose complex questions into sub-queries&lt;/li&gt;
+&lt;li&gt;Maintain conversation context&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2-multi-source-retrieval"&gt;2. &lt;strong&gt;Multi-Source Retrieval&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;The system retrieves candidate products from three complementary sources:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Vector Search (OpenSearch)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Semantic similarity using embeddings&lt;/li&gt;
+&lt;li&gt;Captures meaning beyond exact keywords&lt;/li&gt;
+&lt;li&gt;Returns products with similar descriptions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Keyword Search (BM25)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Traditional text matching&lt;/li&gt;
+&lt;li&gt;Effective for exact product names or specifications&lt;/li&gt;
+&lt;li&gt;Handles specific attribute queries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Graph Retrieval (Neo4j)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Discovers product relationships&lt;/li&gt;
+&lt;li&gt;Finds similar or complementary products&lt;/li&gt;
+&lt;li&gt;Traverses connections like &amp;ldquo;bought together&amp;rdquo;, &amp;ldquo;similar to&amp;rdquo;, &amp;ldquo;alternative for&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Explores product hierarchies and categories&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="3-ranking--filtering"&gt;3. &lt;strong&gt;Ranking &amp;amp; Filtering&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Retrieved candidates are scored and filtered using:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Relevance Score&lt;/strong&gt;: Combination of BM25 and embedding similarity&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph Score&lt;/strong&gt;: Relationship strength from Neo4j&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Business Rules&lt;/strong&gt;: Availability, price range, categories&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Context Filtering&lt;/strong&gt;: User preferences and conversation history&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="4-answer-generation"&gt;4. &lt;strong&gt;Answer Generation&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;The chatbot synthesizes recommendations into natural language:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Explains why products are recommended&lt;/li&gt;
+&lt;li&gt;Highlights key features and benefits&lt;/li&gt;
+&lt;li&gt;Provides comparison insights&lt;/li&gt;
+&lt;li&gt;Asks clarifying questions when needed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="architecture"&gt;Architecture
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;span class="lnt"&gt;36
+&lt;/span&gt;&lt;span class="lnt"&gt;37
+&lt;/span&gt;&lt;span class="lnt"&gt;38
+&lt;/span&gt;&lt;span class="lnt"&gt;39
+&lt;/span&gt;&lt;span class="lnt"&gt;40
+&lt;/span&gt;&lt;span class="lnt"&gt;41
+&lt;/span&gt;&lt;span class="lnt"&gt;42
+&lt;/span&gt;&lt;span class="lnt"&gt;43
+&lt;/span&gt;&lt;span class="lnt"&gt;44
+&lt;/span&gt;&lt;span class="lnt"&gt;45
+&lt;/span&gt;&lt;span class="lnt"&gt;46
+&lt;/span&gt;&lt;span class="lnt"&gt;47
+&lt;/span&gt;&lt;span class="lnt"&gt;48
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;┌─────────────────────────────────────────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ User Query (NL) │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ &amp;#34;Show me running shoes under $100&amp;#34; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└────────────────────┬────────────────────────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ┌──────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ Chatbot Service │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ (Query Processing) │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Intent Extraction │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Sub-questions │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Context Manager │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └──────────┬───────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ┌────────────┼────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ │ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼ ▼ ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;┌──────────┐ ┌──────────┐ ┌──────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│OpenSearch│ │ Neo4j │ │Azure AI │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │ │ Graph │ │ Search │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ Semantic │ │ Relation │ │ BM25 │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ Vectors │ │ Traversal│ │ Keywords │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└────┬─────┘ └────┬─────┘ └────┬─────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ │ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └────────────┼────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ┌─────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ Ranking Engine │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Score Fusion │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Filter Rules │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Context Weight │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └──────────┬──────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ┌─────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ Answer Generator │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ (LLM Synthesis) │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Format Results │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Add Explanations │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ • Generate Response│
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └──────────┬──────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ┌─────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ Natural Language │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ Response │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └─────────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="key-technologies"&gt;Key Technologies
+&lt;/h2&gt;&lt;h3 id="graph-database-neo4j"&gt;Graph Database (Neo4j)
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Why Graph for Recommendations?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Graph databases excel at representing and querying relationships:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Product Relationships&lt;/strong&gt;: &amp;ldquo;similar_to&amp;rdquo;, &amp;ldquo;complementary&amp;rdquo;, &amp;ldquo;bought_together&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Category Hierarchies&lt;/strong&gt;: Navigate from specific items to broader categories&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;User Preferences&lt;/strong&gt;: Track user interests and interaction patterns&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fast Traversals&lt;/strong&gt;: Efficiently explore multi-hop connections&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Example Graph Query:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;// Find products similar to running shoes
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;MATCH (p:Product {name: &amp;#34;Nike Air Max&amp;#34;})-[:SIMILAR_TO]-&amp;gt;(similar:Product)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;WHERE similar.price &amp;lt; 100
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;RETURN similar.name, similar.price, similar.rating
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ORDER BY similar.rating DESC
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;LIMIT 5
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="vector-search-opensearch"&gt;Vector Search (OpenSearch)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Stores product embeddings (768-dimensional vectors)&lt;/li&gt;
+&lt;li&gt;Performs semantic similarity search&lt;/li&gt;
+&lt;li&gt;Captures meaning beyond exact text matches&lt;/li&gt;
+&lt;li&gt;Fast approximate nearest neighbor (ANN) search&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="hybrid-scoring"&gt;Hybrid Scoring
+&lt;/h3&gt;&lt;p&gt;Combines multiple signals for optimal results:&lt;/p&gt;
+$$
+\text{FinalScore} = \alpha \cdot \text{BM25Score} + \beta \cdot \text{EmbeddingScore} + \gamma \cdot \text{GraphScore}
+$$&lt;p&gt;Where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\alpha, \beta, \gamma$ are tunable weights&lt;/li&gt;
+&lt;li&gt;BM25Score: Keyword relevance&lt;/li&gt;
+&lt;li&gt;EmbeddingScore: Semantic similarity&lt;/li&gt;
+&lt;li&gt;GraphScore: Relationship strength&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="recommendation-flow"&gt;Recommendation Flow
+&lt;/h2&gt;&lt;h3 id="example-conversation"&gt;Example Conversation
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;User:&lt;/strong&gt; &amp;ldquo;I need running shoes for trail running&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;System Process:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Query Analysis&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Intent: Product search&lt;/li&gt;
+&lt;li&gt;Category: Shoes → Running Shoes → Trail Running&lt;/li&gt;
+&lt;li&gt;Constraints: None explicit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Retrieval&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Vector Search&lt;/strong&gt;: Products with similar descriptions to &amp;ldquo;trail running shoes&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BM25&lt;/strong&gt;: Exact matches for &amp;ldquo;trail running&amp;rdquo; and &amp;ldquo;shoes&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph&lt;/strong&gt;:
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Trail Running → requires → Trail Running Shoes
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Trail Running Shoes → similar_to → Hiking Shoes
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Trail Running Shoes → complementary → Running Socks
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ranking&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Top 10 trail running shoes by combined score&lt;/li&gt;
+&lt;li&gt;Filter by availability and ratings&lt;/li&gt;
+&lt;li&gt;Boost popular brands&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;I found 5 great trail running shoes for you:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;1. Salomon Speedcross 5 ($130) ⭐ 4.8/5
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - Excellent grip for technical trails
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - Waterproof design
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2. Brooks Cascadia 16 ($140) ⭐ 4.7/5
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - Comfortable for long distances
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - Good cushioning
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Would you like more details or have a specific price range?
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;User:&lt;/strong&gt; &amp;ldquo;Something under $100?&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;System Process:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Context Update&lt;/strong&gt;: Add price constraint &amp;lt; $100&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Re-rank&lt;/strong&gt;: Apply price filter to previous results&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph Expansion&lt;/strong&gt;: Look for alternatives in lower price range&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Response&lt;/strong&gt;: Updated recommendations within budget&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id="features"&gt;Features
+&lt;/h2&gt;&lt;h3 id="intelligent-query-understanding"&gt;Intelligent Query Understanding
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Multi-turn conversation with context retention&lt;/li&gt;
+&lt;li&gt;Intent classification and entity extraction&lt;/li&gt;
+&lt;li&gt;Handles ambiguous queries with clarifying questions&lt;/li&gt;
+&lt;li&gt;Understands synonyms and variations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="multi-modal-retrieval"&gt;Multi-Modal Retrieval
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Semantic Search&lt;/strong&gt;: Understands meaning and context&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Keyword Matching&lt;/strong&gt;: Precise for specific terms&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph Traversal&lt;/strong&gt;: Discovers related products through relationships&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="advanced-ranking"&gt;Advanced Ranking
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Relevance&lt;/strong&gt;: How well product matches query&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Popularity&lt;/strong&gt;: User ratings and purchase frequency&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Freshness&lt;/strong&gt;: Recent additions and trending items&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Diversity&lt;/strong&gt;: Varied results to increase discovery&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="graph-powered-insights"&gt;Graph-Powered Insights
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;Customers who bought this also bought&amp;hellip;&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Similar products you might like&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Complete your set with&amp;hellip;&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Product comparison and alternatives&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="personalization-future"&gt;Personalization (Future)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;User preference learning&lt;/li&gt;
+&lt;li&gt;Interaction history tracking&lt;/li&gt;
+&lt;li&gt;Collaborative filtering via graph&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="benefits"&gt;Benefits
+&lt;/h2&gt;&lt;h3 id="for-users"&gt;For Users
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Natural language interaction - no complex filters needed&lt;/li&gt;
+&lt;li&gt;Discover products through relationships and connections&lt;/li&gt;
+&lt;li&gt;Contextual recommendations that understand intent&lt;/li&gt;
+&lt;li&gt;Explanations for why products are recommended&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="for-business"&gt;For Business
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Better product discovery → higher conversion&lt;/li&gt;
+&lt;li&gt;Relationship-based recommendations → cross-selling&lt;/li&gt;
+&lt;li&gt;Understand product connections and gaps&lt;/li&gt;
+&lt;li&gt;Scalable architecture for large catalogs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="technical-advantages"&gt;Technical Advantages
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Flexible&lt;/strong&gt;: Easy to add new relationship types&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Explainable&lt;/strong&gt;: Graph paths show recommendation reasoning&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scalable&lt;/strong&gt;: Distributed search and graph processing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accurate&lt;/strong&gt;: Hybrid approach combines best of multiple methods&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="performance"&gt;Performance
+&lt;/h2&gt;&lt;h3 id="retrieval-speed"&gt;Retrieval Speed
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Vector Search: &amp;lt; 50ms (top 100 candidates)&lt;/li&gt;
+&lt;li&gt;Graph Traversal: &amp;lt; 100ms (2-3 hop queries)&lt;/li&gt;
+&lt;li&gt;BM25 Search: &amp;lt; 30ms&lt;/li&gt;
+&lt;li&gt;Total Recommendation Time: &amp;lt; 500ms&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="accuracy-metrics"&gt;Accuracy Metrics
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Precision@5&lt;/strong&gt;: Relevance of top 5 results&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Recall@20&lt;/strong&gt;: Coverage of relevant products&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MRR&lt;/strong&gt; (Mean Reciprocal Rank): Position of first relevant result&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph Coverage&lt;/strong&gt;: % of products connected in graph&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="technology-stack"&gt;Technology Stack
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Component&lt;/th&gt;
+&lt;th&gt;Technology&lt;/th&gt;
+&lt;th&gt;Purpose&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Chatbot Engine&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;LangGraph, FastAPI&lt;/td&gt;
+&lt;td&gt;Conversation orchestration&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;LLM&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Azure OpenAI, Claude&lt;/td&gt;
+&lt;td&gt;Query understanding &amp;amp; generation&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Vector DB&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;OpenSearch&lt;/td&gt;
+&lt;td&gt;Semantic search&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Graph DB&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Neo4j 5.22&lt;/td&gt;
+&lt;td&gt;Relationship retrieval&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Search&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Azure AI Search&lt;/td&gt;
+&lt;td&gt;BM25 keyword matching&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Backend&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Python 3.11+, FastAPI&lt;/td&gt;
+&lt;td&gt;API services&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Embeddings&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Azure OpenAI Ada-002&lt;/td&gt;
+&lt;td&gt;Text to vectors&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="key-learnings"&gt;Key Learnings
+&lt;/h2&gt;&lt;h3 id="why-graph-retrieval"&gt;Why Graph Retrieval?
+&lt;/h3&gt;&lt;p&gt;Traditional recommendation systems rely on:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Content-based filtering (similar features)&lt;/li&gt;
+&lt;li&gt;Collaborative filtering (similar users)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Graph retrieval adds:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Explicit relationship modeling&lt;/li&gt;
+&lt;li&gt;Multi-hop reasoning&lt;/li&gt;
+&lt;li&gt;Explainable connections&lt;/li&gt;
+&lt;li&gt;Dynamic relationship discovery&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="hybrid-is-better"&gt;Hybrid is Better
+&lt;/h3&gt;&lt;p&gt;No single retrieval method is perfect:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Vectors capture semantics but miss exact matches&lt;/li&gt;
+&lt;li&gt;Keywords find exact terms but miss meaning&lt;/li&gt;
+&lt;li&gt;Graphs discover relationships but need initial candidates&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Combining all three provides the best results.&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;div align="center"&gt;
+&lt;p&gt;&lt;strong&gt;Built by Sun Asterisk&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Intelligent recommendations through conversational AI and graph intelligence&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;</description></item><item><title>Corporate Chatbot</title><link>https://vuniem131104.github.io/my-portfolio/p/corporate-chatbot/</link><pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/corporate-chatbot/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/corporate-chatbot/cover.jpg" alt="Featured image of post Corporate Chatbot" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; Private&lt;/p&gt;
+&lt;h1 id="sun-assistant"&gt;Sun Assistant
+&lt;/h1&gt;&lt;div align="center"&gt;
+&lt;p&gt;&lt;img src="https://img.shields.io/badge/version-4.1.0-blue.svg"
+loading="lazy"
+alt="Version"
+&gt;
+&lt;img src="https://img.shields.io/badge/python-3.11&amp;#43;-green.svg"
+loading="lazy"
+alt="Python"
+&gt;
+&lt;img src="https://img.shields.io/badge/license-MIT-yellow.svg"
+loading="lazy"
+alt="License"
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Always ready, always listening!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;An enterprise-grade AI assistant platform with intelligent document management, conversational AI, and multi-source knowledge retrieval.&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="#-features" &gt;Features&lt;/a&gt; • &lt;a class="link" href="#-architecture" &gt;Architecture&lt;/a&gt; • &lt;a class="link" href="#-quick-start" &gt;Quick Start&lt;/a&gt; • &lt;a class="link" href="#-documentation" &gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="table-of-contents"&gt;Table of Contents
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="#-overview" &gt;Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-features" &gt;Features&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-architecture" &gt;Architecture&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-services" &gt;Services&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-libraries" &gt;Libraries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-quick-start" &gt;Quick Start&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-development" &gt;Development&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-deployment" &gt;Deployment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-testing" &gt;Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="#-database-migrations" &gt;Database Migrations&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Sun Assistant&lt;/strong&gt; is a comprehensive AI-powered assistant platform designed for enterprise environments. It combines advanced natural language processing, intelligent document management, and multi-modal data retrieval to provide accurate, context-aware responses to user queries.&lt;/p&gt;
+&lt;h3 id="key-capabilities"&gt;Key Capabilities
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent Chatbot&lt;/strong&gt; - AI-powered question answering with LangGraph state management&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Document Management&lt;/strong&gt; - Automated document processing and indexing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-Source Search&lt;/strong&gt; - OpenSearch, PostgreSQL, and Neo4j integration&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Slack Integration&lt;/strong&gt; - Seamless workplace communication&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph Knowledge Base&lt;/strong&gt; - Neo4j-powered relationship mapping&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agentic Architecture&lt;/strong&gt; - Autonomous task planning with MCP (Model Context Protocol)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-Language Support&lt;/strong&gt; - Vietnamese, Japanese, and English&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="features"&gt;Features
+&lt;/h2&gt;&lt;h3 id="conversational-ai"&gt;Conversational AI
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Multi-turn conversation with context awareness&lt;/li&gt;
+&lt;li&gt;Intelligent question decomposition&lt;/li&gt;
+&lt;li&gt;Dynamic task planning and orchestration&lt;/li&gt;
+&lt;li&gt;Human-in-the-loop intervention for complex queries&lt;/li&gt;
+&lt;li&gt;Checkpoint-based state persistence&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="document-intelligence"&gt;Document Intelligence
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Automated document ingestion and processing&lt;/li&gt;
+&lt;li&gt;Azure Document Intelligence integration&lt;/li&gt;
+&lt;li&gt;Semantic embedding generation&lt;/li&gt;
+&lt;li&gt;Multi-format support (PDF, DOCX, images)&lt;/li&gt;
+&lt;li&gt;Vector and graph-based indexing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="knowledge-retrieval"&gt;Knowledge Retrieval
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Semantic search with OpenSearch&lt;/li&gt;
+&lt;li&gt;Graph-based relationship traversal with Neo4j&lt;/li&gt;
+&lt;li&gt;Hybrid search combining vector and keyword matching&lt;/li&gt;
+&lt;li&gt;Context filtering and ranking&lt;/li&gt;
+&lt;li&gt;Answer aggregation from multiple sources&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="integration--deployment"&gt;Integration &amp;amp; Deployment
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Docker-based microservices architecture&lt;/li&gt;
+&lt;li&gt;RESTful APIs with FastAPI&lt;/li&gt;
+&lt;li&gt;Prometheus metrics and health checks&lt;/li&gt;
+&lt;li&gt;Slack bot integration&lt;/li&gt;
+&lt;li&gt;Horizontal scalability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="architecture"&gt;Architecture
+&lt;/h2&gt;&lt;p&gt;Sun Assistant follows a &lt;strong&gt;microservices architecture&lt;/strong&gt; with clear separation of concerns:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;┌─────────────────────────────────────────────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ User Interface │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ (Slack / REST API) │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└────────────────────┬────────────────────────────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ┌───────────────┼───────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ │ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;┌────▼────┐ ┌────▼────┐ ┌────▼────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ Slack │ │ Chatbot │ │ Doc │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ Service │ │ Service │ │ Manager │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└────┬────┘ └────┬────┘ └────┬────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ │ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └──────────────┼──────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ┌──────────────┼──────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ │ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;┌────▼─────┐ ┌────▼────┐ ┌─────▼─────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│OpenSearch│ │ Neo4j │ │PostgreSQL │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ (Vector)│ │ (Graph) │ │ (Relat.) │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└──────────┘ └─────────┘ └───────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="technology-stack"&gt;Technology Stack
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Backend Framework&lt;/strong&gt;: Python 3.11+, FastAPI, LangGraph&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI/ML&lt;/strong&gt;: LiteLLM (multi-provider LLM), Azure OpenAI, Claude&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Search Engines&lt;/strong&gt;: OpenSearch (vector search), Azure AI Search&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Databases&lt;/strong&gt;: PostgreSQL 17, Neo4j 5.22 (graph)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Message Queue&lt;/strong&gt;: Slack SDK&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Infrastructure&lt;/strong&gt;: Docker, Docker Compose&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Package Manager&lt;/strong&gt;: UV (ultra-fast Python package manager)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="services"&gt;Services
+&lt;/h2&gt;&lt;h3 id="1-chatbot-service"&gt;1. &lt;strong&gt;Chatbot Service&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;AI-powered conversational interface with intelligent question answering.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Key Features:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Question processing and sub-question generation&lt;/li&gt;
+&lt;li&gt;Context retrieval from multiple sources&lt;/li&gt;
+&lt;li&gt;Answer generation using multiple LLM providers&lt;/li&gt;
+&lt;li&gt;Conversation management and history&lt;/li&gt;
+&lt;li&gt;Prometheus metrics&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Endpoints:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;GET /v1/healthz&lt;/code&gt; - Health check&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;POST /v1/chat&lt;/code&gt; - Chat interface&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GET /v1/metrics&lt;/code&gt; - Prometheus metrics&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a class="link" href="services/chatbot/CHATBOT_SERVICE_ANALYSIS.md" &gt;Learn more →&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="2-document-manager-service"&gt;2. &lt;strong&gt;Document Manager Service&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Handles document upload, processing, and indexing.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Features:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Document upload and validation&lt;/li&gt;
+&lt;li&gt;Azure Document Intelligence processing&lt;/li&gt;
+&lt;li&gt;Embedding generation and storage&lt;/li&gt;
+&lt;li&gt;Multi-index management&lt;/li&gt;
+&lt;li&gt;Document lifecycle management&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Operations:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add/Update/Delete documents&lt;/li&gt;
+&lt;li&gt;Get document status&lt;/li&gt;
+&lt;li&gt;Batch processing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="3-slack-service"&gt;3. &lt;strong&gt;Slack Service&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Seamless integration with Slack workspace.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Features:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Direct message handling&lt;/li&gt;
+&lt;li&gt;Channel monitoring&lt;/li&gt;
+&lt;li&gt;Feedback collection (1-5 star ratings)&lt;/li&gt;
+&lt;li&gt;Health monitoring&lt;/li&gt;
+&lt;li&gt;Error handling and maintenance mode&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Health Checks:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Neo4j connectivity&lt;/li&gt;
+&lt;li&gt;RAG service availability&lt;/li&gt;
+&lt;li&gt;Bot responsiveness&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="4-mcp-server"&gt;4. &lt;strong&gt;MCP Server&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Model Context Protocol server for advanced task orchestration.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Capabilities:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dynamic tool discovery&lt;/li&gt;
+&lt;li&gt;Task planning and execution&lt;/li&gt;
+&lt;li&gt;Context management&lt;/li&gt;
+&lt;li&gt;Multi-step reasoning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="5-text2graphql-service"&gt;5. &lt;strong&gt;Text2GraphQL Service&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Natural language to GraphQL query translation for Neo4j queries.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="libraries"&gt;Libraries
+&lt;/h2&gt;&lt;p&gt;The project includes reusable libraries in the &lt;code&gt;libs/&lt;/code&gt; directory:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Library&lt;/th&gt;
+&lt;th&gt;Purpose&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;aws_claude&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;AWS Bedrock Claude integration&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;azure_ai_search&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Azure AI Search wrapper&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;azure_document_intelligent&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Azure Document Intelligence client&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;base&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Common utilities and base classes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;litellm&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Multi-provider LLM abstraction&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;logger&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Centralized logging&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;neograph&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Neo4j graph database client&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;open_search&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;OpenSearch integration&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;pg&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;PostgreSQL database client&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;slack_client&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Slack SDK wrapper&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;storage&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Cloud storage abstraction&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="quick-start"&gt;Quick Start
+&lt;/h2&gt;&lt;h3 id="prerequisites"&gt;Prerequisites
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Docker &amp;amp; Docker Compose&lt;/li&gt;
+&lt;li&gt;Python 3.11+&lt;/li&gt;
+&lt;li&gt;UV package manager&lt;/li&gt;
+&lt;li&gt;Git&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="1-clone-the-repository"&gt;1. Clone the Repository
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone https://github.com/framgia/sun-assistant.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; sun-assistant
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="2-environment-configuration"&gt;2. Environment Configuration
+&lt;/h3&gt;&lt;p&gt;Create a &lt;code&gt;.env&lt;/code&gt; file with required configuration:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Azure Search&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;AZURE_SEARCH__INDEX_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;documents_production
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# PostgreSQL&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;POSTGRES__USERNAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;your_username
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;POSTGRES__PASSWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;your_password
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;POSTGRES__DB&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;sun_assistant
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;POSTGRES__HOST&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;postgres
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Neo4j&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;NEO4J__HOST&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;neo4j
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;NEO4J__PORT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;7687&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;NEO4J__USERNAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;neo4j
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;NEO4J__PASSWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;your_neo4j_password
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Slack&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;SLACK__SIGNING_SECRET&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;your_signing_secret
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;SLACK__BOT_TOKEN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xoxb-your-bot-token
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;SLACK__APP_TOKEN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xapp-your-app-token
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;SLACK__BOT_ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;your_bot_id
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# LLM Services&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;LITELLM_SERVICE_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;http://litellm:4000
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;CHATBOT_SERVICE_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;http://chatbot_service:8000
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="3-build-and-start-services"&gt;3. Build and Start Services
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash ./scripts/get_started.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Or manually with Docker Compose:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="4-verify-installation"&gt;4. Verify Installation
+&lt;/h3&gt;&lt;p&gt;Check service health:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Chatbot service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl http://localhost:8000/v1/healthz
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Neo4j browser&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;open http://localhost:17474
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# PostgreSQL&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;psql -h localhost -p &lt;span class="m"&gt;15432&lt;/span&gt; -U your_username -d sun_assistant
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="development"&gt;Development
+&lt;/h2&gt;&lt;h3 id="set-up-development-environment"&gt;Set Up Development Environment
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Install UV Package Manager&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -LsSf https://astral.sh/uv/install.sh &lt;span class="p"&gt;|&lt;/span&gt; sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start="2"&gt;
+&lt;li&gt;&lt;strong&gt;Install Dependencies&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv sync
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start="3"&gt;
+&lt;li&gt;&lt;strong&gt;Set Up Pre-commit Hooks&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Install pre-commit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install pre-commit
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Add to git hooks&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pre-commit install
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Run on all files&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pre-commit run --all-files
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="local-development-workflow"&gt;Local Development Workflow
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Work on a specific service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; services/chatbot
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv sync
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run chatbot
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Run with auto-reload&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run uvicorn src.chatbot.main:app --reload
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="code-style"&gt;Code Style
+&lt;/h3&gt;&lt;p&gt;This project uses:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Black&lt;/strong&gt; for code formatting&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;isort&lt;/strong&gt; for import sorting&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;flake8&lt;/strong&gt; for linting&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;mypy&lt;/strong&gt; for type checking&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Pre-commit hooks automatically format code before commits.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="testing"&gt;Testing
+&lt;/h2&gt;&lt;h3 id="unit-tests"&gt;Unit Tests
+&lt;/h3&gt;&lt;p&gt;Test files must be in the &lt;code&gt;tests/&lt;/code&gt; directory of each service.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;span class="lnt"&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Run all tests in a service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; services/chatbot
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python -m unittest discover
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Run specific test file&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python -m unittest tests.test_module_name
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Run with pytest&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run pytest
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="test-conventions"&gt;Test Conventions
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;Test files start with &lt;code&gt;test_&lt;/code&gt; (e.g., &lt;code&gt;test_chatbot.py&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Tests organized by feature/module&lt;/li&gt;
+&lt;li&gt;Use descriptive test names&lt;/li&gt;
+&lt;li&gt;Include docstrings for complex tests&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="integration-tests"&gt;Integration Tests
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Run integration tests with Docker&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose run --rm chatbot_service uv run pytest tests/integration/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="deployment"&gt;Deployment
+&lt;/h2&gt;&lt;h3 id="docker-deployment"&gt;Docker Deployment
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Production build&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose -f docker-compose.yml up -d
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Check logs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose logs -f chatbot_service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Scale services&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose up -d --scale &lt;span class="nv"&gt;chatbot_service&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="deployment-scripts"&gt;Deployment Scripts
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Deploy to staging&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash ./scripts/deploy/staging.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Deploy to production&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash ./scripts/deploy/host_prod.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="health-monitoring"&gt;Health Monitoring
+&lt;/h3&gt;&lt;p&gt;All services expose health check endpoints:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Chatbot: &lt;code&gt;http://localhost:8000/v1/healthz&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Slack: Health check via tracker.py (every 6h)&lt;/li&gt;
+&lt;li&gt;Document Manager: &lt;code&gt;http://localhost:8001/healthz&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="database-migrations"&gt;Database Migrations
+&lt;/h2&gt;&lt;h3 id="neo4j-migrations"&gt;Neo4j Migrations
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Installation&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -LO https://github.com/michael-simons/neo4j-migrations/releases/download/2.0.3/neo4j-migrations-2.0.3-linux-x86_64.zip
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;unzip neo4j-migrations-2.0.3-linux-x86_64.zip
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;NEO4J__MIGRATION_PATH=/path/to/neo4j-migrations-2.0.3-linux-x86_64/bin&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; .env
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start="2"&gt;
+&lt;li&gt;&lt;strong&gt;Usage&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Check migration status&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python migrations.py info
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Apply pending migrations&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python migrations.py migrate
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Run specific migration&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python migrations.py run V001__migration_name.cypher
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Clean migrations history&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python migrations.py clean &lt;span class="nb"&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start="3"&gt;
+&lt;li&gt;&lt;strong&gt;Migration File Convention&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;migrations/V&amp;lt;version&amp;gt;__&amp;lt;description&amp;gt;.cypher
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Examples:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;- V000__Add_Communities_Label.cypher
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;- V1_0_2__AddChunkLabel.cypher
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="data-migration"&gt;Data Migration
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Stop Neo4j service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose stop neo4j
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Dump data&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash ./scripts/utils/dump_data.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Restore data&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash ./scripts/utils/restore_data.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;div align="center"&gt;
+&lt;p&gt;&lt;strong&gt;Built by Sun Asterisk&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="#sun-assistant" &gt;Back to Top&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;</description></item><item><title>SmartGOV - Chatbot for Administrative Procedures</title><link>https://vuniem131104.github.io/my-portfolio/p/smartgov/</link><pubDate>Sun, 17 Aug 2025 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/smartgov/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/smartgov/cover.jpg" alt="Featured image of post SmartGOV - Chatbot for Administrative Procedures" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; &lt;a class="link" href="https://github.com/vuniem131104/UET-Codecamp-2025.git" target="_blank" rel="noopener"
+&gt;SmartGOV&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="smartgov---hệ-thống-chatbot-hỗ-trợ-thủ-tục-hành-chính"&gt;SmartGov - Hệ thống Chatbot hỗ trợ Thủ tục Hành chính
+&lt;/h1&gt;&lt;p&gt;&lt;a class="link" href="https://python.org" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Python-3.13-blue.svg"
+loading="lazy"
+alt="Python"
+&gt;&lt;/a&gt;
+&lt;a class="link" href="https://reactjs.org" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/React-18.2.0-blue.svg"
+loading="lazy"
+alt="React"
+&gt;&lt;/a&gt;
+&lt;a class="link" href="https://typescriptlang.org" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/TypeScript-5.3.3-blue.svg"
+loading="lazy"
+alt="TypeScript"
+&gt;&lt;/a&gt;
+&lt;a class="link" href="https://fastapi.tiangolo.com" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/FastAPI-Latest-green.svg"
+loading="lazy"
+alt="FastAPI"
+&gt;&lt;/a&gt;
+&lt;a class="link" href="https://neo4j.com" target="_blank" rel="noopener"
+&gt;&lt;img src="https://img.shields.io/badge/Neo4j-5.22.0-orange.svg"
+loading="lazy"
+alt="Neo4j"
+&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;SmartGov là một hệ thống chatbot thông minh được thiết kế để hỗ trợ công dân trong việc thực hiện các thủ tục hành chính. Hệ thống sử dụng công nghệ AI hiện đại, Knowledge Graph và Retrieval-Augmented Generation (RAG) để cung cấp thông tin chính xác và hữu ích về các dịch vụ công.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://vuniem131104.github.io/my-portfolio/p/smartgov/architecture.png"
+width="914"
+height="785"
+srcset="https://vuniem131104.github.io/my-portfolio/p/smartgov/architecture_hu_4210e8ff5f5da1cd.png 480w, https://vuniem131104.github.io/my-portfolio/p/smartgov/architecture_hu_fe7d49fcfe0b985f.png 1024w"
+loading="lazy"
+alt="SmartGov Architecture"
+class="gallery-image"
+data-flex-grow="116"
+data-flex-basis="279px"
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://vuniem131104.github.io/my-portfolio/p/smartgov/chatbot.png"
+width="614"
+height="622"
+srcset="https://vuniem131104.github.io/my-portfolio/p/smartgov/chatbot_hu_a10d53c6f6867ed7.png 480w, https://vuniem131104.github.io/my-portfolio/p/smartgov/chatbot_hu_ad6f4b1d85511132.png 1024w"
+loading="lazy"
+alt="SmartGov Assistant"
+class="gallery-image"
+data-flex-grow="98"
+data-flex-basis="236px"
+&gt;&lt;/p&gt;
+&lt;h2 id="tính-năng-chính"&gt;Tính năng chính
+&lt;/h2&gt;&lt;h3 id="chatbot-thông-minh"&gt;Chatbot thông minh
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Multi-Agent Architecture&lt;/strong&gt;: Hệ thống agent đa tầng với routing thông minh&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Profile Agent&lt;/strong&gt;: Tự động điền thông tin cá nhân vào biểu mẫu&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GeoAdmin Agent&lt;/strong&gt;: Trả lời các câu hỏi về địa danh và đơn vị hành chính&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RAG Agent&lt;/strong&gt;: Tìm kiếm và trả lời dựa trên knowledge base&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Speech-to-Text&lt;/strong&gt;: Hỗ trợ nhập liệu bằng giọng nói&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="xử-lý-tài-liệu"&gt;Xử lý tài liệu
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Document Parsing&lt;/strong&gt;: Xử lý file DOCX, PDF và chuyển đổi sang văn bản&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intelligent Chunking&lt;/strong&gt;: Chia nhỏ tài liệu thành các đoạn có ý nghĩa&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Knowledge Graph Building&lt;/strong&gt;: Tạo đồ thị tri thức từ nội dung tài liệu&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Embedding&lt;/strong&gt;: Vector hóa nội dung để tìm kiếm ngữ nghĩa&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="giao-diện-người-dùng"&gt;Giao diện người dùng
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Modern React UI&lt;/strong&gt;: Giao diện đẹp mắt với Tailwind CSS&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Real-time Chat&lt;/strong&gt;: Trò chuyện thời gian thực với hiệu ứng typing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Document Management&lt;/strong&gt;: Quản lý và đánh chỉ mục tài liệu&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Responsive Design&lt;/strong&gt;: Tương thích mọi thiết bị&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="kiến-trúc-hệ-thống"&gt;Kiến trúc hệ thống
+&lt;/h2&gt;&lt;h3 id="microservices-architecture"&gt;Microservices Architecture
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ Frontend │ │ Chatbot │ │ Indexing │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ (React) │◄──►│ Service │◄──►│ Service │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ Port: 5173 │ │ Port: 3010 │ │ Port: 3006 │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└─────────────────┘ └─────────────────┘ └─────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ │ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ │ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼ ▼ ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ RAG Service │ │ STT Service │ │ LiteLL M │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ Port: 8001 │ │ Port: 8000 │ │ Port: 9510 │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└─────────────────┘ └─────────────────┘ └─────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ │ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └───────────────────────┼───────────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ┌───────────────────────▼───────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ Data Layer │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ ┌──────────┐ ┌──────────┐ ┌──────────┐ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ │PostgreSQL│ │ Neo4j │ │ MinIO │ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ │Port:15432│ │Port:17474│ │Port: 9000│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ └──────────┘ └──────────┘ └──────────┘ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └───────────────────────────────────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="services-overview"&gt;Services Overview
+&lt;/h3&gt;&lt;h4 id="core-services"&gt;Core Services
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Chatbot Service&lt;/strong&gt; (&lt;code&gt;services/chatbot/&lt;/code&gt;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Orchestrates conversation flow&lt;/li&gt;
+&lt;li&gt;Implements multi-agent routing&lt;/li&gt;
+&lt;li&gt;Handles user interactions and responses&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Indexing Service&lt;/strong&gt; (&lt;code&gt;services/indexing/&lt;/code&gt;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Processes and indexes documents&lt;/li&gt;
+&lt;li&gt;Builds knowledge graphs from content&lt;/li&gt;
+&lt;li&gt;Manages document embeddings&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;RAG Service&lt;/strong&gt; (&lt;code&gt;services/rag/&lt;/code&gt;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Implements Retrieval-Augmented Generation&lt;/li&gt;
+&lt;li&gt;Semantic search in knowledge base&lt;/li&gt;
+&lt;li&gt;Context-aware response generation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;STT Service&lt;/strong&gt; (&lt;code&gt;services/stt/&lt;/code&gt;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Speech-to-Text conversion&lt;/li&gt;
+&lt;li&gt;Voice input processing&lt;/li&gt;
+&lt;li&gt;Audio transcription&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="library-modules"&gt;Library Modules
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Base&lt;/strong&gt; (&lt;code&gt;libs/base/&lt;/code&gt;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Common base classes and utilities&lt;/li&gt;
+&lt;li&gt;Shared Pydantic models&lt;/li&gt;
+&lt;li&gt;Application foundations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;LiteLLM&lt;/strong&gt; (&lt;code&gt;libs/lite_llm/&lt;/code&gt;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;LLM integration wrapper&lt;/li&gt;
+&lt;li&gt;Multiple AI model support (Gemini, OpenAI, etc.)&lt;/li&gt;
+&lt;li&gt;Unified API interface&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Graph DB&lt;/strong&gt; (&lt;code&gt;libs/graph_db/&lt;/code&gt;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Neo4j database interface&lt;/li&gt;
+&lt;li&gt;Knowledge graph operations&lt;/li&gt;
+&lt;li&gt;Cypher query abstractions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Storage&lt;/strong&gt; (&lt;code&gt;libs/storage/&lt;/code&gt;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MinIO object storage integration&lt;/li&gt;
+&lt;li&gt;File upload/download management&lt;/li&gt;
+&lt;li&gt;Binary data handling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Logger&lt;/strong&gt; (&lt;code&gt;libs/logger/&lt;/code&gt;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Structured logging system&lt;/li&gt;
+&lt;li&gt;Centralized log management&lt;/li&gt;
+&lt;li&gt;Debug and monitoring support&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;PG&lt;/strong&gt; (&lt;code&gt;libs/pg/&lt;/code&gt;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PostgreSQL database interface&lt;/li&gt;
+&lt;li&gt;SQL operations and migrations&lt;/li&gt;
+&lt;li&gt;Data persistence layer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="cài-đặt-và-triển-khai"&gt;Cài đặt và triển khai
+&lt;/h2&gt;&lt;h3 id="yêu-cầu-hệ-thống"&gt;Yêu cầu hệ thống
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Python&lt;/strong&gt;: &amp;gt;= 3.13&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Node.js&lt;/strong&gt;: &amp;gt;= 18.0.0&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Docker &amp;amp; Docker Compose&lt;/strong&gt;: Latest version&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Git&lt;/strong&gt;: Latest version&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="1-clone-repository"&gt;1. Clone Repository
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone https://github.com/vuniem131104/UET-Codecamp-2025.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; UET-Codecamp-2025
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="2-cấu-hình-environment-variables"&gt;2. Cấu hình Environment Variables
+&lt;/h3&gt;&lt;p&gt;Tạo file &lt;code&gt;.env&lt;/code&gt; từ template:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cp .env.example .env
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Cấu hình các biến môi trường:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-env" data-lang="env"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Database Configuration&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;POSTGRES__USER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;admin
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;POSTGRES__PASSWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;secure_password
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;POSTGRES__DB&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;smartgov_db
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;POSTGRES__HOST&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;localhost
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;POSTGRES__PORT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;15432&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Neo4j Configuration&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;NEO4J__USERNAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;neo4j
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;NEO4J__PASSWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;secure_neo4j_password
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# MinIO Configuration&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;MINIO__ACCESS_KEY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;minioadmin
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;MINIO__SECRET_KEY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;minioadmin123
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# AI API Keys&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;GEMINI_API_KEY1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;your_gemini_api_key_1
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;GEMINI_API_KEY2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;your_gemini_api_key_2
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# ... add more API keys as needed&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="3-khởi-động-infrastructure"&gt;3. Khởi động Infrastructure
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Khởi động databases và dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose up -d postgres neo4j minio redis litellm_service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Kiểm tra trạng thái services&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose ps
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="4-cài-đặt-python-dependencies"&gt;4. Cài đặt Python Dependencies
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Sử dụng uv để quản lý dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install uv
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Cài đặt workspace dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv sync
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="5-khởi-động-backend-services"&gt;5. Khởi động Backend Services
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Terminal 1: Chatbot Service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; services/chatbot
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run python -m chatbot
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Terminal 2: Indexing Service &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; services/indexing
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run python -m indexing
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Terminal 3: RAG Service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; services/rag
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run python -m rag
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Terminal 4: STT Service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; services/stt
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run python -m stt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="6-khởi-động-frontend"&gt;6. Khởi động Frontend
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; frontend
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm install
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm run dev
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="hướng-dẫn-sử-dụng"&gt;Hướng dẫn sử dụng
+&lt;/h2&gt;&lt;h3 id="1-truy-cập-ứng-dụng"&gt;1. Truy cập ứng dụng
+&lt;/h3&gt;&lt;p&gt;Mở trình duyệt và truy cập: &lt;code&gt;http://localhost:5173&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="2-upload-và-đánh-chỉ-mục-tài-liệu"&gt;2. Upload và đánh chỉ mục tài liệu
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;Click vào tab &amp;ldquo;Indexing&amp;rdquo; trong sidebar&lt;/li&gt;
+&lt;li&gt;Upload file DOCX chứa thông tin thủ tục hành chính&lt;/li&gt;
+&lt;li&gt;Click &amp;ldquo;Index&amp;rdquo; để xử lý tài liệu&lt;/li&gt;
+&lt;li&gt;Chờ quá trình đánh chỉ mục hoàn thành&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="3-sử-dụng-chatbot"&gt;3. Sử dụng Chatbot
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;Quay lại tab &amp;ldquo;Chatbot&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Nhập câu hỏi về thủ tục hành chính&lt;/li&gt;
+&lt;li&gt;Hoặc sử dụng microphone để nói&lt;/li&gt;
+&lt;li&gt;Nhận câu trả lời từ AI agent&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="4-các-loại-câu-hỏi-được-hỗ-trợ"&gt;4. Các loại câu hỏi được hỗ trợ
+&lt;/h3&gt;&lt;h4 id="câu-hỏi-chung-về-thủ-tục"&gt;Câu hỏi chung về thủ tục
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;#34;Thủ tục cấp căn cước công dân cần những giấy tờ gì?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;#34;Thời gian xử lý hồ sơ đăng ký xe máy là bao lâu?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="câu-hỏi-về-địa-danh-cơ-quan"&gt;Câu hỏi về địa danh, cơ quan
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;#34;Ủy ban nhân dân phường Cầu Giấy ở đâu?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;#34;Thành phố Hà Nội có bao nhiều quận?&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="yêu-cầu-điền-form-tự-động"&gt;Yêu cầu điền form tự động
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;#34;Giúp tôi điền đơn xin cấp căn cước công dân&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;#34;Tạo đơn đăng ký tạm trú cho tôi&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="phát-triển"&gt;Phát triển
+&lt;/h2&gt;&lt;h3 id="cấu-trúc-dự-án"&gt;Cấu trúc dự án
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;UET-CodeCamp-2025/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── services/ # Microservices
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── chatbot/ # Main chatbot logic
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── indexing/ # Document processing
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── rag/ # RAG implementation
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── stt/ # Speech-to-text
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── libs/ # Shared libraries
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── base/ # Base classes
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── lite_llm/ # LLM integration
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── graph_db/ # Neo4j interface
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── storage/ # MinIO interface
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── logger/ # Logging system
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── pg/ # PostgreSQL interface
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── frontend/ # React frontend
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── docker/ # Docker configurations
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── data/ # Database data
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── logs/ # Application logs
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── config/ # Configuration files
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="thêm-tính-năng-mới"&gt;Thêm tính năng mới
+&lt;/h3&gt;&lt;h4 id="1-tạo-agent-mới"&gt;1. Tạo Agent mới
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# services/chatbot/src/chatbot/domain/new_agent/service.py&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;base&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BaseService&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chatbot.shared.state.chatbot_state&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ChatbotState&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;NewAgentService&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseService&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ChatbotState&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# Implement your agent logic here&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;answer&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Response from new agent&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;references&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="2-đăng-ký-agent-trong-router"&gt;2. Đăng ký Agent trong Router
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# services/chatbot/src/chatbot/application/chatbot.py&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;route_agent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ChatbotState&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Literal&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;new_agent&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# Add routing logic for new agent&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;new_feature&amp;#34;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;raw_question&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;new_agent&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# ... existing routing logic&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="3-thêm-vào-graph"&gt;3. Thêm vào Graph
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# services/chatbot/src/chatbot/application/chatbot.py&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@property&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;nodes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Any&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# ... existing nodes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;new_agent&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new_agent&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="testing"&gt;Testing
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;span class="lnt"&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Run unit tests&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run pytest
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Run integration tests&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run pytest tests/integration/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Test specific service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; services/chatbot
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run pytest tests/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="code-quality"&gt;Code Quality
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Format code&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run black .
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run isort .
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Lint code&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run flake8
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run mypy .
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="monitoring-và-logs"&gt;Monitoring và Logs
+&lt;/h2&gt;&lt;h3 id="log-locations"&gt;Log Locations
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Application Logs&lt;/strong&gt;: &lt;code&gt;logs/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Neo4j Logs&lt;/strong&gt;: &lt;code&gt;logs/neo4j/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Container Logs&lt;/strong&gt;: &lt;code&gt;docker-compose logs [service]&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="health-checks"&gt;Health Checks
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Check service health&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl http://localhost:3010/health &lt;span class="c1"&gt;# Chatbot&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl http://localhost:3006/health &lt;span class="c1"&gt;# Indexing&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl http://localhost:8001/health &lt;span class="c1"&gt;# RAG&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl http://localhost:8000/health &lt;span class="c1"&gt;# STT&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="database-access"&gt;Database Access
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# PostgreSQL&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;psql -h localhost -p &lt;span class="m"&gt;15432&lt;/span&gt; -U admin -d smartgov_db
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Neo4j Browser&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;open http://localhost:17474
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# MinIO Console&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;open http://localhost:9001
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="troubleshooting"&gt;Troubleshooting
+&lt;/h2&gt;&lt;h3 id="các-lỗi-thường-gặp"&gt;Các lỗi thường gặp
+&lt;/h3&gt;&lt;h4 id="1-service-không-khởi-động-được"&gt;1. Service không khởi động được
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Kiểm tra logs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose logs &lt;span class="o"&gt;[&lt;/span&gt;service-name&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Restart service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose restart &lt;span class="o"&gt;[&lt;/span&gt;service-name&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="2-database-connection-failed"&gt;2. Database connection failed
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Kiểm tra database status&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose ps
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Reset database&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose down
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose up -d postgres neo4j
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="3-frontend-build-errors"&gt;3. Frontend build errors
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Clear cache và reinstall&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; frontend
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;rm -rf node_modules package-lock.json
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm install
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm run dev
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="4-python-import-errors"&gt;4. Python import errors
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Reinstall dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv sync --force
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Check Python path&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv run python -c &lt;span class="s2"&gt;&amp;#34;import sys; print(sys.path)&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="đóng-góp"&gt;Đóng góp
+&lt;/h2&gt;&lt;h3 id="quy-trình-đóng-góp"&gt;Quy trình đóng góp
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;Fork repository&lt;/li&gt;
+&lt;li&gt;Tạo feature branch: &lt;code&gt;git checkout -b feature/amazing-feature&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Commit changes: &lt;code&gt;git commit -m 'Add amazing feature'&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Push to branch: &lt;code&gt;git push origin feature/amazing-feature&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Tạo Pull Request&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="coding-standards"&gt;Coding Standards
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Python&lt;/strong&gt;: Tuân thủ PEP 8, sử dụng type hints&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TypeScript&lt;/strong&gt;: Tuân thủ ESLint config&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Documentation&lt;/strong&gt;: Viết docstring cho functions/classes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Testing&lt;/strong&gt;: Đảm bảo coverage &amp;gt;= 80%&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="commit-convention"&gt;Commit Convention
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;type(scope): subject
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;body
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;footer
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Ví dụ:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;feat(chatbot): add new profile agent
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;- Implement automatic form filling
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;- Add user profile detection
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;- Update routing logic
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Closes #123
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="license"&gt;License
+&lt;/h2&gt;&lt;p&gt;Dự án này được phát hành dưới MIT License. Xem file &lt;a class="link" href="LICENSE" &gt;LICENSE&lt;/a&gt; để biết thêm chi tiết.&lt;/p&gt;
+&lt;h2 id="tác-giả"&gt;Tác giả
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Lê Hoàng Vũ&lt;/strong&gt; - &lt;em&gt;Lead Developer&lt;/em&gt; - &lt;a class="link" href="https://github.com/vulh-1357" target="_blank" rel="noopener"
+&gt;@vulh-1357&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UET-VNU Team&lt;/strong&gt; - &lt;em&gt;Contributors&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="acknowledgments"&gt;Acknowledgments
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Đại học Công nghệ - ĐHQGHN (UET-VNU)&lt;/li&gt;
+&lt;li&gt;Google Gemini AI Platform&lt;/li&gt;
+&lt;li&gt;Neo4j Graph Database&lt;/li&gt;
+&lt;li&gt;FastAPI Framework&lt;/li&gt;
+&lt;li&gt;React &amp;amp; TypeScript Community&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="liên-hệ"&gt;Liên hệ
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Email&lt;/strong&gt;: &lt;a class="link" href="mailto:le.hoang.vu@sun-asterisk.com" &gt;le.hoang.vu@sun-asterisk.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GitHub&lt;/strong&gt;: &lt;a class="link" href="https://github.com/vulh-1357/UET-Codecamp-2025" target="_blank" rel="noopener"
+&gt;https://github.com/vulh-1357/UET-Codecamp-2025&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Website&lt;/strong&gt;: &lt;a class="link" href="https://uet.vnu.edu.vn" target="_blank" rel="noopener"
+&gt;https://uet.vnu.edu.vn&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;SmartGov&lt;/strong&gt; - Democratizing access to government services through AI&lt;/p&gt;</description></item><item><title>Resume Evaluation System</title><link>https://vuniem131104.github.io/my-portfolio/p/resume-evaluation/</link><pubDate>Tue, 01 Apr 2025 00:00:00 +0000</pubDate><guid>https://vuniem131104.github.io/my-portfolio/p/resume-evaluation/</guid><description>&lt;img src="https://vuniem131104.github.io/my-portfolio/p/resume-evaluation/cover.jpg" alt="Featured image of post Resume Evaluation System" /&gt;&lt;p&gt;&lt;strong&gt;Github Repository:&lt;/strong&gt; &lt;a class="link" href="https://github.com/vuniem131104/Resume-Evaluation-Based-On-LLMs" target="_blank" rel="noopener"
+&gt;Resume-Evaluation-Based-On-LLMs&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="resume-evaluation-based-on-llms"&gt;Resume-Evaluation-Based-On-LLMs
+&lt;/h1&gt;&lt;p&gt;A smart, asynchronous resume evaluation system powered by LLMs, Redis, and FastAPI. This system allows users to upload resumes, job descriptions and receive both general and personalized feedback through automated evaluation and virtual interviews.&lt;/p&gt;
+&lt;h2 id="user-interface"&gt;User Interface
+&lt;/h2&gt;&lt;h3 id="1-main"&gt;1. Main
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Users upload their resumes and job descriptions here&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/0b1e9e1e-e6a6-4818-a79e-2cdbb703afba"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Then, click &amp;ldquo;Evaluate Resume&amp;rdquo; button and receive result&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/4996f95e-de08-49dc-abb3-eba989a68594"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Virtual Interview&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/63032caa-3301-4016-9360-552b84a5f174"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Jobs recommedation based on users&amp;rsquo; history&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/7517e05d-b04f-432c-b535-d947c41281f1"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Users&amp;rsquo; evaluation history&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/f9f2f28b-3a8e-414a-afca-e0c8f97feeb0"
+loading="lazy"
+alt="image"
+&gt;&lt;/p&gt;
+&lt;h2 id="-tech-stack"&gt;🔧 Tech Stack
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;FastAPI&lt;/strong&gt; – API server&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Redis&lt;/strong&gt; – Message queue and temporary result store&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Redis Queue&lt;/strong&gt; – Asynchronous task handling (e.g., resume evaluation)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Llama 4&lt;/strong&gt; – Used for text extraction, job/resume standardization and evaluate content and layout of the resume. Also, it will serve as a virtual recruiter and give personalized feedback&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OpenAI Whisper&lt;/strong&gt; – Voice recognition for virtual interviews&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tavily + Web Search Agent&lt;/strong&gt; – Recent job recommendations&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MongoDB&lt;/strong&gt; – User history and job storage, user database&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AWS S3&lt;/strong&gt; – Store resumes files uploaded by users&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="system-architecture"&gt;System Architecture
+&lt;/h2&gt;&lt;h3 id="1-resume-evaluation-flow"&gt;1. Resume Evaluation Flow
+&lt;/h3&gt;&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/40f75ec5-7624-4539-9e13-4c62e0013cea"
+loading="lazy"
+alt="pipeline"
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Step 1&lt;/strong&gt;: Users upload their &lt;strong&gt;resume&lt;/strong&gt; and provide the &lt;strong&gt;job description&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 2&lt;/strong&gt;: The system asynchronously extracts and standardizes text from both the resume and the job description using LLMs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 3&lt;/strong&gt;: The evaluation task is queued via Redis and executed by workers. Once complete, the user receives a &lt;strong&gt;non-personalized feedback&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Optional&lt;/strong&gt;: If the user wants more personalized insights, they proceed to a virtual interview.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2-virtual-interview-and-personalized-feedback"&gt;2. Virtual Interview and Personalized Feedback
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Step 4&lt;/strong&gt;: The LLM generates interview questions based on the job description.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 5&lt;/strong&gt;: The user replies via text or voice (processed by Whisper).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 6&lt;/strong&gt;: The conversation is passed to Qwen 2.5, which generates &lt;strong&gt;personalized feedback&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Final&lt;/strong&gt;: Feedback is returned to the user.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="3-job-recommendation-via-web-search-agent"&gt;3. Job Recommendation via Web Search Agent
+&lt;/h3&gt;&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/9aefbf82-5c81-4066-b693-af843b57aaf4"
+loading="lazy"
+alt="agent"
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Input&lt;/strong&gt;: User submits a request to find relevant jobs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Process&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Job preferences are fetched from &lt;strong&gt;MongoDB&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Tavily-powered &lt;strong&gt;Web Search Agent&lt;/strong&gt; fetches the latest related job postings.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Output&lt;/strong&gt;: Returned to the user.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="how-it-works-key-points"&gt;How It Works (Key Points)
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Uses &lt;strong&gt;Redis&lt;/strong&gt; to enqueue/dequeue long-running tasks like resume evaluation.&lt;/li&gt;
+&lt;li&gt;Separation between &lt;strong&gt;upload&lt;/strong&gt; and &lt;strong&gt;evaluation&lt;/strong&gt; actions to allow flexibility for users.&lt;/li&gt;
+&lt;li&gt;Fully &lt;strong&gt;asynchronous&lt;/strong&gt;, scalable design with pluggable LLMs.&lt;/li&gt;
+&lt;li&gt;Feedback available in 2 modes: quick general or in-depth personalized.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="how-to-run-locally"&gt;How to Run Locally
+&lt;/h2&gt;&lt;h3 id="1-clone-repo"&gt;1. Clone Repo
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 1. Clone the repo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone https://github.com/vuniem131104/Resume-Evaluation-Based-On-LLMs.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; Resume-Evaluation-Based-On-LLMs/app
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 2. Set up virtual environment and install dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python -m venv venv
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;source&lt;/span&gt; venv/bin/activate
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install -r requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. Start Redis server&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;redis-server
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 4. Create .env file similar to .env.example in this repo then put it into folder app/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 5. Run the FastAPI app&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python main.py
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 6. In another terminal, start the workers&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python resume_evaluation_worker.py &lt;span class="c1"&gt;# for resume evaluation worker&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python related_jobs_worker.py &lt;span class="c1"&gt;# for related jobs retrieval worker&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="2-docker"&gt;2. Docker
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Make sure that you have installed docker and docker-compose in your local machine :)))&lt;/li&gt;
+&lt;li&gt;Your folder structur will look like this:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;resume-application/&lt;/p&gt;
+&lt;p&gt;├── uploads/ &lt;br&gt;
+├── .env &lt;br&gt;
+└── docker-compose.yml&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 1. Create a folder in your local machine&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mkdir resume-application &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; resume-application
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mkdir uploads
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 2. Copy docker-compose-user.yml in this repo into the folder&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. Create .env file similar to .env.example in this repo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 4. Run Application&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="future-improvements"&gt;Future Improvements
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Add OAuth2 login for real users&lt;/li&gt;
+&lt;li&gt;Enable file storage via S3 or MinIO&lt;/li&gt;
+&lt;li&gt;Add analytics dashboard for job fit trends&lt;/li&gt;
+&lt;li&gt;Implement feedback history per user&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
