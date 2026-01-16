@@ -11,12 +11,14 @@ comments: false
 
 ## Introduction
 
-I'm a final-year IT student passionate about AI, multi-agent and computer vision systems. With hands-on experience in building scalable MLOps pipelines, LLM-based applications and computer vision projects, I love turning complex problems into intelligent, modular solutions.
+AI Engineer with one year of hands-on experience in developing agentic AI systems, graph-based RAG, and
+computer vision pipelines. Proficient in LLMs, LangGraph, and deep learning with PyTorch, with strong
+experience in building scalable AI systems using LLMs, FastAPI, Redis, and MLops.
 
 ## Education
 
 **VNU University of Engineering and Technology**  
-Bachelor of Information and Technology; GPA: 3.69  
+Bachelor of Information and Technology; GPA: 3.70  
 Oct 2022 – Jan 2026
 
 ## Experience
